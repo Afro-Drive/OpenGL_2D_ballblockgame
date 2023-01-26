@@ -137,11 +137,20 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="game.h" />
     <ClInclude Include="gl.h" />
+    <ClInclude Include="resourceManager.h" />
+    <ClInclude Include="shader.h" />
+    <ClInclude Include="texture.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\opengl_glfw_tutorial\downloads\glad\src\gl.c" />
+    <ClCompile Include="game.cpp" />
     <ClCompile Include="program.cpp" />
+    <ClCompile Include="resourceManager.cpp" />
+    <ClCompile Include="shader.cpp" />
+    <ClCompile Include="stb.cpp" />
+    <ClCompile Include="texture.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
