@@ -13,6 +13,12 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="リソース ファイル\Shaders">
+      <UniqueIdentifier>{a1981633-6117-41cb-9e5f-150d7c3d3127}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="リソース ファイル\Textures">
+      <UniqueIdentifier>{a71e3926-b9a1-4492-a3d6-5e5f2595cd97}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="program.cpp">
@@ -36,6 +42,9 @@
     <ClCompile Include="stb.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
+    <ClCompile Include="spriteRenderer.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="gl.h">
@@ -53,5 +62,21 @@
     <ClInclude Include="resourceManager.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
+    <ClInclude Include="spriteRenderer.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="sprite.frag">
+      <Filter>リソース ファイル\Shaders</Filter>
+    </None>
+    <None Include="sprite.vert">
+      <Filter>リソース ファイル\Shaders</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="pop_cat.png">
+      <Filter>リソース ファイル\Textures</Filter>
+    </Image>
   </ItemGroup>
 </Project>

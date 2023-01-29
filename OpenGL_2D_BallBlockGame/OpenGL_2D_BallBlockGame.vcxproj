@@ -141,6 +141,7 @@
     <ClInclude Include="gl.h" />
     <ClInclude Include="resourceManager.h" />
     <ClInclude Include="shader.h" />
+    <ClInclude Include="spriteRenderer.h" />
     <ClInclude Include="texture.h" />
   </ItemGroup>
   <ItemGroup>
@@ -149,8 +150,16 @@
     <ClCompile Include="program.cpp" />
     <ClCompile Include="resourceManager.cpp" />
     <ClCompile Include="shader.cpp" />
+    <ClCompile Include="spriteRenderer.cpp" />
     <ClCompile Include="stb.cpp" />
     <ClCompile Include="texture.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="sprite.frag" />
+    <None Include="sprite.vert" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="pop_cat.png" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
