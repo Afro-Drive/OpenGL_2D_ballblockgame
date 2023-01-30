@@ -5,14 +5,22 @@
 #include"SpriteRenderer.h"
 #include"resourceManager.h"
 #include"gameObject.h"
+#include"ballObject.h"
 
 
 // Initial size of the player paddle
 const glm::vec2 PLAYER_SIZE(100.0f, 20.0f);
 // Initial velocity of the player paddle
 const float PLAYER_VELOCITY(500.0f);
+// Initial velocity of the Ball
+const glm::vec2 INITIAL_BALL_VELOCITY(100.0f, -350.0f);
+// Radius of the ball object
+const float BALL_RADIUS = 12.5f;
+
 
 GameObject* Player;
+
+BallObject* Ball;
 
 SpriteRenderer* Renderer;
 
@@ -47,6 +55,7 @@ void Game::Init()
 	ResourceManager::LoadTexture("Textures/block.png", false, "block");
 	ResourceManager::LoadTexture("Textures/block_solid.png", false, "block_solid");
 	ResourceManager::LoadTexture("Textures/padlde.png", false, "paddle");
+	ResourceManager::LoadTexture("Textures/awesomeface.png", true, "ball");
 	// load levels
 	GameLevel one;
 	one.Load("levels/one.lvl", this->Width, this->Height / 2);
@@ -66,6 +75,9 @@ void Game::Init()
 		this->Width / 2.0f - PLAYER_SIZE.x / 2.0f,
 		this->Height - PLAYER_SIZE.y);
 	Player = new GameObject(playerPos, PLAYER_SIZE, ResourceManager::GetTexture("paddle"));
+	// Ball configure
+	glm::vec2 ballPos = playerPos + glm::vec2(PLAYER_SIZE.x / 2.0f - BALL_RADIUS, -BALL_RADIUS * 2.0f);
+	Ball = new BallObject(ballPos, BALL_RADIUS, INITIAL_BALL_VELOCITY, ResourceManager::GetTexture("ball"));
 }
 
 void Game::ProcessInput(float dt)
@@ -84,11 +96,14 @@ void Game::ProcessInput(float dt)
 			if (Player->Position.x <= this->Width - Player->Size.x)
 				Player->Position.x += velocity;
 		}
+		if (this->Keys[GLFW_KEY_SPACE])
+			Ball->Stuck = false;
 	}
 }
 
 void Game::Update(float dt)
 {
+	Ball->Move(dt, this->Width);
 }
 
 void Game::Render()
@@ -103,5 +118,7 @@ void Game::Render()
 		this->Levels[this->Level].Draw(*Renderer);
 		// player render
 		Player->Draw(*Renderer);
+		// Ball renderer
+		Ball->Draw(*Renderer);
 	}
 }

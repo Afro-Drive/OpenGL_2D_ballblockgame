@@ -137,6 +137,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="ballObject.h" />
     <ClInclude Include="game.h" />
     <ClInclude Include="gameLevel.h" />
     <ClInclude Include="gameObject.h" />
@@ -148,6 +149,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\opengl_glfw_tutorial\downloads\glad\src\gl.c" />
+    <ClCompile Include="ballObject.cpp" />
     <ClCompile Include="game.cpp" />
     <ClCompile Include="gameLevel.cpp" />
     <ClCompile Include="gameObject.cpp" />
@@ -167,6 +169,7 @@
     <None Include="sprite.vert" />
   </ItemGroup>
   <ItemGroup>
+    <Image Include="Textures\awesomeface.png" />
     <Image Include="Textures\background.jpg" />
     <Image Include="Textures\block.png" />
     <Image Include="Textures\block_solid.png" />
