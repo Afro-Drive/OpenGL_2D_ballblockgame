@@ -40,6 +40,9 @@ class Game
 		void ProcessInput(float dt);
 		void Update(float dt);
 		void Render();
+		void DoCollisions();
+		// AABB(axis-aligned bounding box) - AABB collision
+		bool CheckCollision(GameObject& one, GameObject& two);
 };
 
 #endif
