@@ -19,6 +19,9 @@
     <Filter Include="リソース ファイル\Textures">
       <UniqueIdentifier>{a71e3926-b9a1-4492-a3d6-5e5f2595cd97}</UniqueIdentifier>
     </Filter>
+    <Filter Include="リソース ファイル\Levels">
+      <UniqueIdentifier>{c3d86869-5299-47c9-89fd-55a1dbc03f0e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="program.cpp">
@@ -45,6 +48,12 @@
     <ClCompile Include="spriteRenderer.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
+    <ClCompile Include="gameObject.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="gameLevel.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="gl.h">
@@ -65,6 +74,12 @@
     <ClInclude Include="spriteRenderer.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
+    <ClInclude Include="gameObject.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="gameLevel.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="sprite.frag">
@@ -73,9 +88,33 @@
     <None Include="sprite.vert">
       <Filter>リソース ファイル\Shaders</Filter>
     </None>
+    <None Include="Levels\three.lvl">
+      <Filter>リソース ファイル\Levels</Filter>
+    </None>
+    <None Include="Levels\two.lvl">
+      <Filter>リソース ファイル\Levels</Filter>
+    </None>
+    <None Include="Levels\four.lvl">
+      <Filter>リソース ファイル\Levels</Filter>
+    </None>
+    <None Include="Levels\one.lvl">
+      <Filter>リソース ファイル\Levels</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
-    <Image Include="pop_cat.png">
+    <Image Include="Textures\pop_cat.png">
+      <Filter>リソース ファイル\Textures</Filter>
+    </Image>
+    <Image Include="Textures\background.jpg">
+      <Filter>リソース ファイル\Textures</Filter>
+    </Image>
+    <Image Include="Textures\block.png">
+      <Filter>リソース ファイル\Textures</Filter>
+    </Image>
+    <Image Include="Textures\block_solid.png">
+      <Filter>リソース ファイル\Textures</Filter>
+    </Image>
+    <Image Include="Textures\paddle.png">
       <Filter>リソース ファイル\Textures</Filter>
     </Image>
   </ItemGroup>

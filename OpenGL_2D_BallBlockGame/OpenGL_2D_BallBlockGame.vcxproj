@@ -138,6 +138,8 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="game.h" />
+    <ClInclude Include="gameLevel.h" />
+    <ClInclude Include="gameObject.h" />
     <ClInclude Include="gl.h" />
     <ClInclude Include="resourceManager.h" />
     <ClInclude Include="shader.h" />
@@ -147,6 +149,8 @@
   <ItemGroup>
     <ClCompile Include="..\..\opengl_glfw_tutorial\downloads\glad\src\gl.c" />
     <ClCompile Include="game.cpp" />
+    <ClCompile Include="gameLevel.cpp" />
+    <ClCompile Include="gameObject.cpp" />
     <ClCompile Include="program.cpp" />
     <ClCompile Include="resourceManager.cpp" />
     <ClCompile Include="shader.cpp" />
@@ -155,11 +159,19 @@
     <ClCompile Include="texture.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Levels\four.lvl" />
+    <None Include="Levels\one.lvl" />
+    <None Include="Levels\three.lvl" />
+    <None Include="Levels\two.lvl" />
     <None Include="sprite.frag" />
     <None Include="sprite.vert" />
   </ItemGroup>
   <ItemGroup>
-    <Image Include="pop_cat.png" />
+    <Image Include="Textures\background.jpg" />
+    <Image Include="Textures\block.png" />
+    <Image Include="Textures\block_solid.png" />
+    <Image Include="Textures\paddle.png" />
+    <Image Include="Textures\pop_cat.png" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
