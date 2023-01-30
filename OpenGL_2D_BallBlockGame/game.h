@@ -4,6 +4,8 @@
 #include<glad/gl.h>
 #include<GLFW/glfw3.h>
 
+#include"gameLevel.h"
+
 /// <summary>
 /// Represents the current state of the game
 /// </summary>
@@ -25,6 +27,8 @@ class Game
 		GameState State;
 		bool Keys[1024];
 		unsigned int Width, Height;
+		std::vector<GameLevel> Levels;
+		unsigned int Level;
 		// constructor
 		Game(unsigned int width, unsigned int height);
 		// destructor
