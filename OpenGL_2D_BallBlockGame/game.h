@@ -5,6 +5,8 @@
 #include<GLFW/glfw3.h>
 
 #include"gameLevel.h"
+#include"gameObject.h"
+#include"ballObject.h"
 
 /// <summary>
 /// Represents the current state of the game
@@ -43,6 +45,8 @@ class Game
 		void DoCollisions();
 		// AABB(axis-aligned bounding box) - AABB collision
 		bool CheckCollision(GameObject& one, GameObject& two);
+		// AABB - Circle collision
+		bool CheckCollision(BallObject& one, GameObject& two);
 };
 
 #endif
