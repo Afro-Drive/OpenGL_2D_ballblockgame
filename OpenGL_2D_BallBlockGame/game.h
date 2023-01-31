@@ -5,6 +5,8 @@
 #include<GLFW/glfw3.h>
 
 #include"gameLevel.h"
+#include"gameObject.h"
+#include"ballObject.h"
 
 /// <summary>
 /// Represents the current state of the game
@@ -14,6 +16,18 @@ enum GameState {
 	GAME_MENU,
 	GAME_WIN
 };
+
+/// <summary>
+/// Type for advanced-collision function
+/// </summary>
+enum Direction{
+	UP,
+	RIGHT,
+	DOWN,
+	LEFT
+};
+typedef std::tuple<bool, Direction, glm::vec2> Collision;
+
 
 /// <summary>
 /// Game holds all game-related state and functionally.
@@ -40,6 +54,14 @@ class Game
 		void ProcessInput(float dt);
 		void Update(float dt);
 		void Render();
+		void DoCollisions();
+		// AABB(axis-aligned bounding box) - AABB collision
+		bool CheckCollision(GameObject& one, GameObject& two);
+		// AABB - Circle collision
+		Collision CheckCollision(BallObject& one, GameObject& two);
+		Direction VectorDirection(glm::vec2 target);
+		void ResetPlayer();
+		void ResetLevel();
 };
 
 #endif
