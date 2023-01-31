@@ -18,6 +18,18 @@ enum GameState {
 };
 
 /// <summary>
+/// Type for advanced-collision function
+/// </summary>
+enum Direction{
+	UP,
+	RIGHT,
+	DOWN,
+	LEFT
+};
+typedef std::tuple<bool, Direction, glm::vec2> Collision;
+
+
+/// <summary>
 /// Game holds all game-related state and functionally.
 /// Combines all game-related data into a single class for
 /// easy access to each of the components and manageability
@@ -46,7 +58,10 @@ class Game
 		// AABB(axis-aligned bounding box) - AABB collision
 		bool CheckCollision(GameObject& one, GameObject& two);
 		// AABB - Circle collision
-		bool CheckCollision(BallObject& one, GameObject& two);
+		Collision CheckCollision(BallObject& one, GameObject& two);
+		Direction VectorDirection(glm::vec2 target);
+		void ResetPlayer();
+		void ResetLevel();
 };
 
 #endif
