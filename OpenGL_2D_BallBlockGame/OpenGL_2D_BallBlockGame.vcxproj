@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -142,6 +142,7 @@
     <ClInclude Include="gameLevel.h" />
     <ClInclude Include="gameObject.h" />
     <ClInclude Include="gl.h" />
+    <ClInclude Include="particleGenerator.h" />
     <ClInclude Include="resourceManager.h" />
     <ClInclude Include="shader.h" />
     <ClInclude Include="spriteRenderer.h" />
@@ -153,6 +154,7 @@
     <ClCompile Include="game.cpp" />
     <ClCompile Include="gameLevel.cpp" />
     <ClCompile Include="gameObject.cpp" />
+    <ClCompile Include="particleGenerator.cpp" />
     <ClCompile Include="program.cpp" />
     <ClCompile Include="resourceManager.cpp" />
     <ClCompile Include="shader.cpp" />
@@ -165,8 +167,10 @@
     <None Include="Levels\one.lvl" />
     <None Include="Levels\three.lvl" />
     <None Include="Levels\two.lvl" />
-    <None Include="sprite.frag" />
-    <None Include="sprite.vert" />
+    <None Include="Shaders\particle.frag" />
+    <None Include="Shaders\particle.vert" />
+    <None Include="Shaders\sprite.frag" />
+    <None Include="Shaders\sprite.vert" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="Textures\awesomeface.png" />

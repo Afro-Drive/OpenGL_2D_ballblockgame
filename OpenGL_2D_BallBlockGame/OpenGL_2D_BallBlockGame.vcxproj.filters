@@ -54,6 +54,12 @@
     <ClCompile Include="gameLevel.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
+    <ClCompile Include="ballObject.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="particleGenerator.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="gl.h">
@@ -80,14 +86,14 @@
     <ClInclude Include="gameLevel.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
+    <ClInclude Include="ballObject.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="particleGenerator.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="sprite.frag">
-      <Filter>リソース ファイル\Shaders</Filter>
-    </None>
-    <None Include="sprite.vert">
-      <Filter>リソース ファイル\Shaders</Filter>
-    </None>
     <None Include="Levels\three.lvl">
       <Filter>リソース ファイル\Levels</Filter>
     </None>
@@ -99,6 +105,18 @@
     </None>
     <None Include="Levels\one.lvl">
       <Filter>リソース ファイル\Levels</Filter>
+    </None>
+    <None Include="Shaders\particle.frag">
+      <Filter>リソース ファイル\Shaders</Filter>
+    </None>
+    <None Include="Shaders\particle.vert">
+      <Filter>リソース ファイル\Shaders</Filter>
+    </None>
+    <None Include="Shaders\sprite.frag">
+      <Filter>リソース ファイル\Shaders</Filter>
+    </None>
+    <None Include="Shaders\sprite.vert">
+      <Filter>リソース ファイル\Shaders</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>
@@ -116,6 +134,9 @@
     </Image>
     <Image Include="Textures\paddle.png">
       <Filter>リソース ファイル\Textures</Filter>
+    </Image>
+    <Image Include="Textures\awesomeface.png">
+      <Filter>リソース ファイル</Filter>
     </Image>
   </ItemGroup>
 </Project>

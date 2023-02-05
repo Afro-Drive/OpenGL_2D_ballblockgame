@@ -4,6 +4,7 @@
 
 #include"SpriteRenderer.h"
 #include"resourceManager.h"
+#include"particleGenerator.h"
 
 
 // Initial size of the player paddle
@@ -17,10 +18,9 @@ const float BALL_RADIUS = 12.5f;
 
 
 GameObject* Player;
-
 BallObject* Ball;
-
 SpriteRenderer* Renderer;
+ParticleGenerator* Particles;
 
 
 Game::Game(unsigned int width, unsigned int height)
@@ -33,12 +33,15 @@ Game::~Game()
 {
 	delete Renderer;
 	delete Player;
+	delete Ball;
+	delete Particles;
 }
 
 void Game::Init()
 {
 	// load shaders
-	ResourceManager::LoadShader("sprite.vert", "sprite.frag", nullptr, "sprite");
+	ResourceManager::LoadShader("Shaders/sprite.vert", "Shaders/sprite.frag", nullptr, "sprite");
+	ResourceManager::LoadShader("Shaders/particle.vert", "Shaders/particle.frag", nullptr, "particle");
 	// configure shaders
 	glm::mat4 projection = glm::ortho(0.0f, static_cast<float>(this->Width),
 		static_cast<float>(this->Height), 0.0f, -1.0f, 1.0f);
@@ -54,6 +57,7 @@ void Game::Init()
 	ResourceManager::LoadTexture("Textures/block_solid.png", false, "block_solid");
 	ResourceManager::LoadTexture("Textures/paddle.png", true, "paddle");
 	ResourceManager::LoadTexture("Textures/awesomeface.png", true, "ball");
+	ResourceManager::LoadTexture("Textures/particle.png", true, "particle");
 	// load levels
 	GameLevel one;
 	one.Load("levels/one.lvl", this->Width, this->Height / 2);
@@ -77,6 +81,11 @@ void Game::Init()
 	glm::vec2 ballPos = playerPos + glm::vec2(PLAYER_SIZE.x / 2.0f - BALL_RADIUS, -BALL_RADIUS * 2.0f);
 	// fix sticky paddle 
 	Ball = new BallObject(ballPos, BALL_RADIUS, INITIAL_BALL_VELOCITY, ResourceManager::GetTexture("ball"));
+	Particles = new ParticleGenerator(
+		ResourceManager::GetShader("particle"),
+		ResourceManager::GetTexture("particle"),
+		500
+	);
 }
 
 void Game::ProcessInput(float dt)
@@ -111,6 +120,8 @@ void Game::Update(float dt)
 		this->ResetLevel();
 		this->ResetPlayer();
 	}
+	// update particles
+	Particles->Update(dt, *Ball, 2, glm::vec2(Ball->Radius / 2.0f));
 }
 
 void Game::Render()
@@ -125,6 +136,8 @@ void Game::Render()
 		this->Levels[this->Level].Draw(*Renderer);
 		// player render
 		Player->Draw(*Renderer);
+		// draw particles
+		Particles->Draw();
 		// Ball renderer
 		Ball->Draw(*Renderer);
 	}
