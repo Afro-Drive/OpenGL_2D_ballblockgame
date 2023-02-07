@@ -143,6 +143,7 @@
     <ClInclude Include="gameObject.h" />
     <ClInclude Include="gl.h" />
     <ClInclude Include="particleGenerator.h" />
+    <ClInclude Include="postProcessor.h" />
     <ClInclude Include="resourceManager.h" />
     <ClInclude Include="shader.h" />
     <ClInclude Include="spriteRenderer.h" />
@@ -155,6 +156,7 @@
     <ClCompile Include="gameLevel.cpp" />
     <ClCompile Include="gameObject.cpp" />
     <ClCompile Include="particleGenerator.cpp" />
+    <ClCompile Include="postProcessor.cpp" />
     <ClCompile Include="program.cpp" />
     <ClCompile Include="resourceManager.cpp" />
     <ClCompile Include="shader.cpp" />
@@ -169,6 +171,8 @@
     <None Include="Levels\two.lvl" />
     <None Include="Shaders\particle.frag" />
     <None Include="Shaders\particle.vert" />
+    <None Include="Shaders\postProcessing.frag" />
+    <None Include="Shaders\postProcessing.vert" />
     <None Include="Shaders\sprite.frag" />
     <None Include="Shaders\sprite.vert" />
   </ItemGroup>

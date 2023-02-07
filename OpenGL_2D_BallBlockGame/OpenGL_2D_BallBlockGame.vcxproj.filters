@@ -60,6 +60,9 @@
     <ClCompile Include="particleGenerator.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
+    <ClCompile Include="postProcessor.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="gl.h">
@@ -92,6 +95,9 @@
     <ClInclude Include="particleGenerator.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
+    <ClInclude Include="postProcessor.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Levels\three.lvl">
@@ -116,6 +122,12 @@
       <Filter>リソース ファイル\Shaders</Filter>
     </None>
     <None Include="Shaders\sprite.vert">
+      <Filter>リソース ファイル\Shaders</Filter>
+    </None>
+    <None Include="Shaders\postProcessing.vert">
+      <Filter>リソース ファイル\Shaders</Filter>
+    </None>
+    <None Include="Shaders\postProcessing.frag">
       <Filter>リソース ファイル\Shaders</Filter>
     </None>
   </ItemGroup>
