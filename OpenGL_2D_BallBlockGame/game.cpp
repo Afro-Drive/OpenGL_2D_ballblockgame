@@ -1,10 +1,12 @@
 #include "game.h"
 
 #include<glm/glm.hpp>
+#include<iostream>
 
 #include"SpriteRenderer.h"
 #include"resourceManager.h"
 #include"particleGenerator.h"
+#include"postProcessor.h"
 
 
 // Initial size of the player paddle
@@ -15,12 +17,14 @@ const float PLAYER_VELOCITY(500.0f);
 const glm::vec2 INITIAL_BALL_VELOCITY(100.0f, -350.0f);
 // Radius of the ball object
 const float BALL_RADIUS = 12.5f;
+float ShakeTime = 0.0f;
 
-
+// Game-related State data
 GameObject* Player;
 BallObject* Ball;
 SpriteRenderer* Renderer;
 ParticleGenerator* Particles;
+PostProcessor* Effects;
 
 
 Game::Game(unsigned int width, unsigned int height)
@@ -35,6 +39,7 @@ Game::~Game()
 	delete Player;
 	delete Ball;
 	delete Particles;
+	delete Effects;
 }
 
 void Game::Init()
@@ -42,14 +47,22 @@ void Game::Init()
 	// load shaders
 	ResourceManager::LoadShader("Shaders/sprite.vert", "Shaders/sprite.frag", nullptr, "sprite");
 	ResourceManager::LoadShader("Shaders/particle.vert", "Shaders/particle.frag", nullptr, "particle");
+	ResourceManager::LoadShader("Shaders/postProcessing.vert", "Shaders/postProcessing.frag", nullptr, "postprocessing");
 	// configure shaders
 	glm::mat4 projection = glm::ortho(0.0f, static_cast<float>(this->Width),
 		static_cast<float>(this->Height), 0.0f, -1.0f, 1.0f);
 	ResourceManager::GetShader("sprite").Use().SetInteger("image", 0);
 	ResourceManager::GetShader("sprite").SetMatrix4("projection", projection);
+	ResourceManager::GetShader("particle").Use().SetInteger("sprite", 0);
+	ResourceManager::GetShader("particle").SetMatrix4("projection", projection);
 	// set render-specific controls
 	Shader sprite = ResourceManager::GetShader("sprite");
 	Renderer = new SpriteRenderer(sprite);
+	Particles = new ParticleGenerator(
+		ResourceManager::GetShader("particle"),
+		ResourceManager::GetTexture("particle"),
+		500);
+	Effects = new PostProcessor(ResourceManager::GetShader("postprocessing"), this->Width, this->Height);
 	// load textures
 	ResourceManager::LoadTexture("Textures/pop_cat.png", true, "cat");
 	ResourceManager::LoadTexture("Textures/background.jpg", false, "background");
@@ -81,11 +94,6 @@ void Game::Init()
 	glm::vec2 ballPos = playerPos + glm::vec2(PLAYER_SIZE.x / 2.0f - BALL_RADIUS, -BALL_RADIUS * 2.0f);
 	// fix sticky paddle 
 	Ball = new BallObject(ballPos, BALL_RADIUS, INITIAL_BALL_VELOCITY, ResourceManager::GetTexture("ball"));
-	Particles = new ParticleGenerator(
-		ResourceManager::GetShader("particle"),
-		ResourceManager::GetTexture("particle"),
-		500
-	);
 }
 
 void Game::ProcessInput(float dt)
@@ -115,19 +123,29 @@ void Game::Update(float dt)
 	Ball->Move(dt, this->Width);
 	// check for collisions
 	this->DoCollisions();
+	// update particles
+	Particles->Update(dt, *Ball, 2, glm::vec2(Ball->Radius / 2.0f));
+	// reduce shake time
+	if (ShakeTime > 0.0f)
+	{
+		ShakeTime -= dt;
+		if (ShakeTime <= 0.0f)
+			Effects->Shake = false;
+	}
 	if (Ball->Position.y >= this->Height) // di ball reach bottom edge?
 	{
 		this->ResetLevel();
 		this->ResetPlayer();
 	}
-	// update particles
-	Particles->Update(dt, *Ball, 2, glm::vec2(Ball->Radius / 2.0f));
 }
 
 void Game::Render()
 {
 	if (this->State == GAME_ACTIVE)
 	{
+		// begin rendering to postprocessing framebuffer
+		Effects->BeginRender();
+
 		// draw background
 		Texture2D bgTex = ResourceManager::GetTexture("background");
 		Renderer->DrawSprite(bgTex,
@@ -140,6 +158,11 @@ void Game::Render()
 		Particles->Draw();
 		// Ball renderer
 		Ball->Draw(*Renderer);
+
+		// end rendering to postprocessing framebuffer
+		Effects->EndRender();
+		// render postprocessing quad
+		Effects->Render(glfwGetTime());
 	}
 }
 
@@ -154,7 +177,12 @@ void Game::DoCollisions()
 			{
 				// destroy block if not solid
 				if (!box.IsSolid)
+				{
 					box.Destroyed = true;
+					// if block is solid, enable shake effect
+					ShakeTime = 0.05f;
+					Effects->Shake = true;
+				}
 				// collision resolution
 				Direction dir = std::get<1>(collision);
 				glm::vec2 diff_vector = std::get<2>(collision);
