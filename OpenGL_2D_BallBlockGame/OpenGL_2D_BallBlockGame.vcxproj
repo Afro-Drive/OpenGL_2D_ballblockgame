@@ -88,7 +88,7 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>glfw3.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>glfw3.lib;opengl32.lib;irrKlang.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -117,7 +117,7 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>glfw3.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>glfw3.lib;opengl32.lib;irrKlang.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -144,6 +144,7 @@
     <ClInclude Include="gl.h" />
     <ClInclude Include="particleGenerator.h" />
     <ClInclude Include="postProcessor.h" />
+    <ClInclude Include="powerUp.h" />
     <ClInclude Include="resourceManager.h" />
     <ClInclude Include="shader.h" />
     <ClInclude Include="spriteRenderer.h" />
@@ -157,6 +158,7 @@
     <ClCompile Include="gameObject.cpp" />
     <ClCompile Include="particleGenerator.cpp" />
     <ClCompile Include="postProcessor.cpp" />
+    <ClCompile Include="powerUp.cpp" />
     <ClCompile Include="program.cpp" />
     <ClCompile Include="resourceManager.cpp" />
     <ClCompile Include="shader.cpp" />
@@ -183,6 +185,19 @@
     <Image Include="Textures\block_solid.png" />
     <Image Include="Textures\paddle.png" />
     <Image Include="Textures\pop_cat.png" />
+    <Image Include="Textures\PowerUp\powerup_chaos.png" />
+    <Image Include="Textures\PowerUp\powerup_confuse.png" />
+    <Image Include="Textures\PowerUp\powerup_increase.png" />
+    <Image Include="Textures\PowerUp\powerup_passthrough.png" />
+    <Image Include="Textures\PowerUp\powerup_speed.png" />
+    <Image Include="Textures\PowerUp\powerup_sticky.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Media Include="Audio\SE\bleep.mp3" />
+    <Media Include="Audio\SE\bleep.wav" />
+    <Media Include="Audio\SE\powerup.wav" />
+    <Media Include="Audio\SE\solid.wav" />
+    <Media Include="Music\breakout.mp3" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -3,10 +3,12 @@
 
 #include<glad/gl.h>
 #include<GLFW/glfw3.h>
+#include<vector>
 
 #include"gameLevel.h"
 #include"gameObject.h"
 #include"ballObject.h"
+#include"Actor/powerUp.h"
 
 /// <summary>
 /// Represents the current state of the game
@@ -43,6 +45,8 @@ class Game
 		unsigned int Width, Height;
 		std::vector<GameLevel> Levels;
 		unsigned int Level;
+		std::vector<PowerUp> PowerUps;
+
 		// constructor
 		Game(unsigned int width, unsigned int height);
 		// destructor
@@ -62,6 +66,10 @@ class Game
 		Direction VectorDirection(glm::vec2 target);
 		void ResetPlayer();
 		void ResetLevel();
+		void SpawnPowerUps(GameObject& block);
+		void UpdatePowerUps(float dt);
+		void ActivatePowerUp(PowerUp& powerUp);
+		bool IsOtherPowerUpActive(std::vector<PowerUp>& powerUps, std::string type);
 };
 
 #endif
