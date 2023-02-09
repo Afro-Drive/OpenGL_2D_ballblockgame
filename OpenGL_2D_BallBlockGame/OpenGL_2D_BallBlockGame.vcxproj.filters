@@ -22,6 +22,24 @@
     <Filter Include="リソース ファイル\Levels">
       <UniqueIdentifier>{c3d86869-5299-47c9-89fd-55a1dbc03f0e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="リソース ファイル\Textures\PowerUp">
+      <UniqueIdentifier>{aef4de44-5d7a-4499-8f87-4eb2908947cc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Actor">
+      <UniqueIdentifier>{33ca50ab-e8ad-448b-9703-f15ab87436ea}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\Actor">
+      <UniqueIdentifier>{22fe5c02-3d94-4c06-bf32-79b09af15bcf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="リソース ファイル\Audio">
+      <UniqueIdentifier>{64a45acd-c532-44fb-9c59-3da56f767e57}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="リソース ファイル\Audio\BGM">
+      <UniqueIdentifier>{d6be0d77-f731-4514-bdde-a7a1aa88991e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="リソース ファイル\Audio\SE">
+      <UniqueIdentifier>{a274271a-094a-47d3-b008-f3318b0662b6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="program.cpp">
@@ -63,6 +81,9 @@
     <ClCompile Include="postProcessor.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
+    <ClCompile Include="powerUp.cpp">
+      <Filter>ソース ファイル\Actor</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="gl.h">
@@ -97,6 +118,9 @@
     </ClInclude>
     <ClInclude Include="postProcessor.h">
       <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="powerUp.h">
+      <Filter>ヘッダー ファイル\Actor</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -150,5 +174,40 @@
     <Image Include="Textures\awesomeface.png">
       <Filter>リソース ファイル</Filter>
     </Image>
+    <Image Include="Textures\PowerUp\powerup_sticky.png">
+      <Filter>リソース ファイル\Textures\PowerUp</Filter>
+    </Image>
+    <Image Include="Textures\PowerUp\powerup_chaos.png">
+      <Filter>リソース ファイル\Textures\PowerUp</Filter>
+    </Image>
+    <Image Include="Textures\PowerUp\powerup_confuse.png">
+      <Filter>リソース ファイル\Textures\PowerUp</Filter>
+    </Image>
+    <Image Include="Textures\PowerUp\powerup_increase.png">
+      <Filter>リソース ファイル\Textures\PowerUp</Filter>
+    </Image>
+    <Image Include="Textures\PowerUp\powerup_passthrough.png">
+      <Filter>リソース ファイル\Textures\PowerUp</Filter>
+    </Image>
+    <Image Include="Textures\PowerUp\powerup_speed.png">
+      <Filter>リソース ファイル\Textures\PowerUp</Filter>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <Media Include="Music\breakout.mp3">
+      <Filter>リソース ファイル\Audio\BGM</Filter>
+    </Media>
+    <Media Include="Audio\SE\bleep.wav">
+      <Filter>リソース ファイル\Audio\SE</Filter>
+    </Media>
+    <Media Include="Audio\SE\powerup.wav">
+      <Filter>リソース ファイル\Audio\SE</Filter>
+    </Media>
+    <Media Include="Audio\SE\solid.wav">
+      <Filter>リソース ファイル\Audio\SE</Filter>
+    </Media>
+    <Media Include="Audio\SE\bleep.mp3">
+      <Filter>リソース ファイル\Audio\SE</Filter>
+    </Media>
   </ItemGroup>
 </Project>
