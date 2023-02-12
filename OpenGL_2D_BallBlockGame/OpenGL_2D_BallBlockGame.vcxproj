@@ -88,7 +88,7 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>glfw3.lib;opengl32.lib;irrKlang.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>glfw3.lib;opengl32.lib;irrKlang.lib;freetype.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -117,7 +117,7 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>glfw3.lib;opengl32.lib;irrKlang.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>glfw3.lib;opengl32.lib;irrKlang.lib;freetype.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -149,6 +149,7 @@
     <ClInclude Include="shader.h" />
     <ClInclude Include="spriteRenderer.h" />
     <ClInclude Include="texture.h" />
+    <ClInclude Include="UI\textRenderer.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\opengl_glfw_tutorial\downloads\glad\src\gl.c" />
@@ -165,6 +166,7 @@
     <ClCompile Include="spriteRenderer.cpp" />
     <ClCompile Include="stb.cpp" />
     <ClCompile Include="texture.cpp" />
+    <ClCompile Include="UI\textRenderer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Levels\four.lvl" />
@@ -177,6 +179,8 @@
     <None Include="Shaders\postProcessing.vert" />
     <None Include="Shaders\sprite.frag" />
     <None Include="Shaders\sprite.vert" />
+    <None Include="Shaders\text_2d.frag" />
+    <None Include="Shaders\text_2d.vert" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="Textures\awesomeface.png" />
@@ -198,6 +202,9 @@
     <Media Include="Audio\SE\powerup.wav" />
     <Media Include="Audio\SE\solid.wav" />
     <Media Include="Music\breakout.mp3" />
+  </ItemGroup>
+  <ItemGroup>
+    <Font Include="Fonts\OCRAEXT.TTF" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
