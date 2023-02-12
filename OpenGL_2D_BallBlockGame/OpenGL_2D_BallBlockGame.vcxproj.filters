@@ -40,6 +40,15 @@
     <Filter Include="リソース ファイル\Audio\SE">
       <UniqueIdentifier>{a274271a-094a-47d3-b008-f3318b0662b6}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\UI">
+      <UniqueIdentifier>{7ec4c9eb-a30c-4848-915c-8e41e21d6250}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\UI">
+      <UniqueIdentifier>{1bc2597e-e775-4c68-bf51-b524db425a8c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="リソース ファイル\Fonts">
+      <UniqueIdentifier>{af251812-7215-4f69-ac5a-282f41ea3668}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="program.cpp">
@@ -63,9 +72,6 @@
     <ClCompile Include="stb.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="spriteRenderer.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
     <ClCompile Include="gameObject.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
@@ -83,6 +89,12 @@
     </ClCompile>
     <ClCompile Include="powerUp.cpp">
       <Filter>ソース ファイル\Actor</Filter>
+    </ClCompile>
+    <ClCompile Include="spriteRenderer.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="UI\textRenderer.cpp">
+      <Filter>ソース ファイル\UI</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -122,6 +134,9 @@
     <ClInclude Include="powerUp.h">
       <Filter>ヘッダー ファイル\Actor</Filter>
     </ClInclude>
+    <ClInclude Include="UI\textRenderer.h">
+      <Filter>ヘッダー ファイル\UI</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Levels\three.lvl">
@@ -154,6 +169,12 @@
     <None Include="Shaders\postProcessing.frag">
       <Filter>リソース ファイル\Shaders</Filter>
     </None>
+    <None Include="Shaders\text_2d.vert">
+      <Filter>リソース ファイル\Shaders</Filter>
+    </None>
+    <None Include="Shaders\text_2d.frag">
+      <Filter>リソース ファイル\Shaders</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Image Include="Textures\pop_cat.png">
@@ -170,9 +191,6 @@
     </Image>
     <Image Include="Textures\paddle.png">
       <Filter>リソース ファイル\Textures</Filter>
-    </Image>
-    <Image Include="Textures\awesomeface.png">
-      <Filter>リソース ファイル</Filter>
     </Image>
     <Image Include="Textures\PowerUp\powerup_sticky.png">
       <Filter>リソース ファイル\Textures\PowerUp</Filter>
@@ -192,6 +210,9 @@
     <Image Include="Textures\PowerUp\powerup_speed.png">
       <Filter>リソース ファイル\Textures\PowerUp</Filter>
     </Image>
+    <Image Include="Textures\awesomeface.png">
+      <Filter>リソース ファイル\Textures</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <Media Include="Music\breakout.mp3">
@@ -209,5 +230,10 @@
     <Media Include="Audio\SE\bleep.mp3">
       <Filter>リソース ファイル\Audio\SE</Filter>
     </Media>
+  </ItemGroup>
+  <ItemGroup>
+    <Font Include="Fonts\OCRAEXT.TTF">
+      <Filter>リソース ファイル\Fonts</Filter>
+    </Font>
   </ItemGroup>
 </Project>
