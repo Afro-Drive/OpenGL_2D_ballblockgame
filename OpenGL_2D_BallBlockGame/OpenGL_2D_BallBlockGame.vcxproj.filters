@@ -49,6 +49,27 @@
     <Filter Include="リソース ファイル\Fonts">
       <UniqueIdentifier>{af251812-7215-4f69-ac5a-282f41ea3668}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\Scene">
+      <UniqueIdentifier>{a444fa62-02b8-41cb-a35a-bb36be6a3da1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\Scene">
+      <UniqueIdentifier>{0cef6792-6327-40df-9f14-fc9a3dd5b4ba}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\MyInclude">
+      <UniqueIdentifier>{f3874dc4-b43b-49c2-ba93-ca3fc174f3bb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Device">
+      <UniqueIdentifier>{a358a365-34be-4187-8033-4f7c373147be}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\Device">
+      <UniqueIdentifier>{4999847d-2be8-41a3-ab68-428486559e20}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Effect">
+      <UniqueIdentifier>{d4a2186a-f9d2-4719-bac9-59f7baa5fafd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\Effect">
+      <UniqueIdentifier>{324bbd99-b912-4365-b8a4-8cf1f9fa197d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="program.cpp">
@@ -81,20 +102,44 @@
     <ClCompile Include="ballObject.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="particleGenerator.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
     <ClCompile Include="postProcessor.cpp">
       <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="powerUp.cpp">
-      <Filter>ソース ファイル\Actor</Filter>
     </ClCompile>
     <ClCompile Include="spriteRenderer.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
     <ClCompile Include="UI\textRenderer.cpp">
       <Filter>ソース ファイル\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\abstractScene.cpp">
+      <Filter>ソース ファイル\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\endScene.cpp">
+      <Filter>ソース ファイル\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\gameMainScene.cpp">
+      <Filter>ソース ファイル\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\sceneManager.cpp">
+      <Filter>ソース ファイル\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Effect\particleGenerator.cpp">
+      <Filter>ソース ファイル\Effect</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\titleScene.cpp">
+      <Filter>ソース ファイル\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Device\input.cpp">
+      <Filter>ソース ファイル\Device</Filter>
+    </ClCompile>
+    <ClCompile Include="Actor\powerUp.cpp">
+      <Filter>ソース ファイル\Actor</Filter>
+    </ClCompile>
+    <ClCompile Include="screenDesc.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\sceneMediator.cpp">
+      <Filter>ソース ファイル\Scene</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -125,17 +170,80 @@
     <ClInclude Include="ballObject.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="particleGenerator.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
     <ClInclude Include="postProcessor.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="powerUp.h">
-      <Filter>ヘッダー ファイル\Actor</Filter>
-    </ClInclude>
     <ClInclude Include="UI\textRenderer.h">
       <Filter>ヘッダー ファイル\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\abstractScene.h">
+      <Filter>ヘッダー ファイル\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\endScene.h">
+      <Filter>ヘッダー ファイル\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\gameMainScene.h">
+      <Filter>ヘッダー ファイル\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\iScene.h">
+      <Filter>ヘッダー ファイル\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\sceneManager.h">
+      <Filter>ヘッダー ファイル\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="MyInclude\spriteRendererh.h">
+      <Filter>ヘッダー ファイル\MyInclude</Filter>
+    </ClInclude>
+    <ClInclude Include="MyInclude\resourceManager.h">
+      <Filter>ヘッダー ファイル\MyInclude</Filter>
+    </ClInclude>
+    <ClInclude Include="MyInclude\particleGenerator.h">
+      <Filter>ヘッダー ファイル\MyInclude</Filter>
+    </ClInclude>
+    <ClInclude Include="MyInclude\textRenderer.h">
+      <Filter>ヘッダー ファイル\MyInclude</Filter>
+    </ClInclude>
+    <ClInclude Include="MyInclude\postProcessor.h">
+      <Filter>ヘッダー ファイル\MyInclude</Filter>
+    </ClInclude>
+    <ClInclude Include="Device\input.h">
+      <Filter>ヘッダー ファイル\Device</Filter>
+    </ClInclude>
+    <ClInclude Include="MyInclude\input.h">
+      <Filter>ヘッダー ファイル\MyInclude</Filter>
+    </ClInclude>
+    <ClInclude Include="MyInclude\ballObject.h">
+      <Filter>ヘッダー ファイル\MyInclude</Filter>
+    </ClInclude>
+    <ClInclude Include="MyInclude\gameLevel.h">
+      <Filter>ヘッダー ファイル\MyInclude</Filter>
+    </ClInclude>
+    <ClInclude Include="Effect\particleGenerator.h">
+      <Filter>ヘッダー ファイル\Effect</Filter>
+    </ClInclude>
+    <ClInclude Include="MyInclude\powerUp.h">
+      <Filter>ヘッダー ファイル\MyInclude</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\titleScene.h">
+      <Filter>ヘッダー ファイル\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="MyInclude\texture.h">
+      <Filter>ヘッダー ファイル\MyInclude</Filter>
+    </ClInclude>
+    <ClInclude Include="MyInclude\shader.h">
+      <Filter>ヘッダー ファイル\MyInclude</Filter>
+    </ClInclude>
+    <ClInclude Include="MyInclude\gameObject.h">
+      <Filter>ヘッダー ファイル\MyInclude</Filter>
+    </ClInclude>
+    <ClInclude Include="Actor\powerUp.h">
+      <Filter>ヘッダー ファイル\Actor</Filter>
+    </ClInclude>
+    <ClInclude Include="screenDesc.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\sceneMediator.h">
+      <Filter>ヘッダー ファイル\Scene</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

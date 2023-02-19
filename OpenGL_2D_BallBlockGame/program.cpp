@@ -8,16 +8,11 @@
 #include<GLFW/glfw3.h>
 
 #include"game.h"
-#include"resourceManager.h"
+#include<input.h>
+#include"screenDesc.h"
 
 
-// The Width of the screen
-const unsigned int SCREEN_WIDTH = 800;
-// The Height of the screen
-const unsigned int SCREEN_HEIGHT = 600;
-
-Game BrockBallGame(SCREEN_WIDTH, SCREEN_HEIGHT);
-
+Game BrockBallGame = Game();
 
 // GLFW function declarations
 void framebuffer_size_callback(GLFWwindow* window, int width, int height);
@@ -39,7 +34,7 @@ int main()
 	glfwWindowHint(GLFW_RESIZABLE, GL_FALSE);
 
 	// Create Window
-	GLFWwindow* window = glfwCreateWindow(SCREEN_WIDTH, SCREEN_HEIGHT, "OpenGL 2D Ball Brock Game!", NULL, NULL);
+	GLFWwindow* window = glfwCreateWindow(ScreenDesc::WIDTH, ScreenDesc::HEIGHT, "OpenGL 2D Ball Brock Game!", NULL, NULL);
 	// Early guard statement in case of failure creation of window
 	// Terminate as failure
 	if (window == NULL)
@@ -64,9 +59,11 @@ int main()
 
 	// OpenGL configuration
 	// ---------------------
-	glViewport(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
+	glViewport(0, 0, ScreenDesc::WIDTH, ScreenDesc::HEIGHT);
 	glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
+	Input::Init();
 
 	// initialize game
 	// ---------------
@@ -87,21 +84,19 @@ int main()
 		deltaTime = currentFrame - lastFrame;
 		lastFrame = currentFrame;
 
-		glfwPollEvents();
-
-		// manage user input
-		// -----------------
-		BrockBallGame.ProcessInput(deltaTime);
-
-		// update game state
-		// -----------------
-		BrockBallGame.Update(deltaTime);
-
-		// render
-		// ------
+		// clear render
+		// ------------
 		glClearColor(0.07f, 0.13f, 0.17f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT);
-		BrockBallGame.Render();
+
+		glfwPollEvents();
+
+		// Run Game.
+		// In this function, Game is managed user input,
+		// updated game state, renderer to game window.
+		// -----------------
+		BrockBallGame.Run(deltaTime);
+		Input::Update();
 
 		glfwSwapBuffers(window);
 	}
@@ -129,14 +124,9 @@ void key_callback(GLFWwindow* window, int key, int scancode, int action, int mod
 	if (key >= 0 && key < 1024)
 	{
 		if (action == GLFW_PRESS)
-		{
-			BrockBallGame.Keys[key] = true;
-		}
+			Input::Keys[key] = true;
 		else if (action == GLFW_RELEASE)
-		{
-			BrockBallGame.Keys[key] = false;
-			BrockBallGame.KeysProcessed[key] = false;
-		}
+			Input::Keys[key] = false;
 	}
 }
 

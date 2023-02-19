@@ -71,11 +71,11 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>C:\Users\Emicr\Desktop\game_works\opengl_2D_ballblockgame\OpenGL_2D_BallBlockGame\Libraries\include;$(IncludePath)</IncludePath>
+    <IncludePath>C:\Users\Emicr\Desktop\game_works\opengl_2D_ballblockgame\OpenGL_2D_BallBlockGame\MyInclude;C:\Users\Emicr\Desktop\game_works\opengl_2D_ballblockgame\OpenGL_2D_BallBlockGame\Libraries\include;$(IncludePath)</IncludePath>
     <LibraryPath>C:\Users\Emicr\Desktop\game_works\opengl_2D_ballblockgame\OpenGL_2D_BallBlockGame\Libraries\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IncludePath>C:\Users\Emicr\Desktop\game_works\opengl_2D_ballblockgame\OpenGL_2D_BallBlockGame\Libraries\include;$(IncludePath)</IncludePath>
+    <IncludePath>C:\Users\Emicr\Desktop\game_works\opengl_2D_ballblockgame\OpenGL_2D_BallBlockGame\MyInclude;C:\Users\Emicr\Desktop\game_works\opengl_2D_ballblockgame\OpenGL_2D_BallBlockGame\Libraries\include;$(IncludePath)</IncludePath>
     <LibraryPath>C:\Users\Emicr\Desktop\game_works\opengl_2D_ballblockgame\OpenGL_2D_BallBlockGame\Libraries\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -137,15 +137,36 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Actor\powerUp.h" />
     <ClInclude Include="ballObject.h" />
+    <ClInclude Include="Device\input.h" />
+    <ClInclude Include="Effect\particleGenerator.h" />
     <ClInclude Include="game.h" />
     <ClInclude Include="gameLevel.h" />
     <ClInclude Include="gameObject.h" />
     <ClInclude Include="gl.h" />
-    <ClInclude Include="particleGenerator.h" />
+    <ClInclude Include="MyInclude\ballObject.h" />
+    <ClInclude Include="MyInclude\gameLevel.h" />
+    <ClInclude Include="MyInclude\gameObject.h" />
+    <ClInclude Include="MyInclude\input.h" />
+    <ClInclude Include="MyInclude\particleGenerator.h" />
+    <ClInclude Include="MyInclude\postProcessor.h" />
+    <ClInclude Include="MyInclude\powerUp.h" />
+    <ClInclude Include="MyInclude\resourceManager.h" />
+    <ClInclude Include="MyInclude\shader.h" />
+    <ClInclude Include="MyInclude\spriteRendererh.h" />
+    <ClInclude Include="MyInclude\textRenderer.h" />
+    <ClInclude Include="MyInclude\texture.h" />
     <ClInclude Include="postProcessor.h" />
-    <ClInclude Include="powerUp.h" />
     <ClInclude Include="resourceManager.h" />
+    <ClInclude Include="Scene\abstractScene.h" />
+    <ClInclude Include="Scene\endScene.h" />
+    <ClInclude Include="Scene\gameMainScene.h" />
+    <ClInclude Include="Scene\iScene.h" />
+    <ClInclude Include="Scene\sceneManager.h" />
+    <ClInclude Include="Scene\sceneMediator.h" />
+    <ClInclude Include="Scene\titleScene.h" />
+    <ClInclude Include="screenDesc.h" />
     <ClInclude Include="shader.h" />
     <ClInclude Include="spriteRenderer.h" />
     <ClInclude Include="texture.h" />
@@ -153,15 +174,23 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\opengl_glfw_tutorial\downloads\glad\src\gl.c" />
+    <ClCompile Include="Actor\powerUp.cpp" />
     <ClCompile Include="ballObject.cpp" />
+    <ClCompile Include="Device\input.cpp" />
+    <ClCompile Include="Effect\particleGenerator.cpp" />
     <ClCompile Include="game.cpp" />
     <ClCompile Include="gameLevel.cpp" />
     <ClCompile Include="gameObject.cpp" />
-    <ClCompile Include="particleGenerator.cpp" />
     <ClCompile Include="postProcessor.cpp" />
-    <ClCompile Include="powerUp.cpp" />
     <ClCompile Include="program.cpp" />
     <ClCompile Include="resourceManager.cpp" />
+    <ClCompile Include="Scene\abstractScene.cpp" />
+    <ClCompile Include="Scene\endScene.cpp" />
+    <ClCompile Include="Scene\gameMainScene.cpp" />
+    <ClCompile Include="Scene\sceneManager.cpp" />
+    <ClCompile Include="Scene\sceneMediator.cpp" />
+    <ClCompile Include="Scene\titleScene.cpp" />
+    <ClCompile Include="screenDesc.cpp" />
     <ClCompile Include="shader.cpp" />
     <ClCompile Include="spriteRenderer.cpp" />
     <ClCompile Include="stb.cpp" />
