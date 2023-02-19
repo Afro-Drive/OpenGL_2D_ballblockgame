@@ -6,9 +6,9 @@
 #include<glad/gl.h>
 #include<glm/glm.hpp>
 
-#include"shader.h"
-#include"texture.h"
-#include"gameObject.h"
+#include<shader.h>
+#include<texture.h>
+#include<gameObject.h>
 
 // Represents a single particle and its state
 struct Particle {

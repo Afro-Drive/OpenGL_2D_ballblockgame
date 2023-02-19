@@ -1,12 +1,12 @@
 #ifndef POWER_UP_H
 #define POWER_UP_H
 
-#include "gameObject.h"
+#include <gameObject.h>
 
 #include<string>
 #include<glm/glm.hpp>
 
-#include"texture.h"
+#include<texture.h>
 
 
 // The size of a PowerUp block
