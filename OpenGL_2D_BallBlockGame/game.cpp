@@ -13,7 +13,7 @@ using namespace irrklang;
 #include"Scene/gameMainScene.h"
 #include"Scene/endScene.h"
 #include"Scene/abstractScene.h"
-#include"screenDesc.h"
+#include<screenDesc.h>
 #include"Scene/SceneMediator.h"
 
 
@@ -58,7 +58,6 @@ Game::~Game()
 	//delete Ball;
 	//delete Particles;
 	//delete Effects;
-	soundEngine->drop();
 }
 
 void Game::Init()
@@ -131,12 +130,12 @@ void Game::Init()
 	soundEngine = createIrrKlangDevice();
 	// scene related
 	sceneManager = SceneManager::GetInstance();
-	sceneMediator = new SceneMediator();
-	AbstractScene* titleScene = new TitleScene(ScreenDesc::WIDTH, ScreenDesc::HEIGHT, soundEngine, sceneMediator);
+	sceneMediator = new SceneMediator(*soundEngine);
+	AbstractScene* titleScene = new TitleScene(ScreenDesc::WIDTH, ScreenDesc::HEIGHT, sceneMediator);
 	sceneManager->AddScene(SceneName::TITLE, *titleScene);
-	AbstractScene* endScene = new EndScene(ScreenDesc::WIDTH, ScreenDesc::HEIGHT, soundEngine, sceneMediator);
+	AbstractScene* endScene = new EndScene(ScreenDesc::WIDTH, ScreenDesc::HEIGHT, sceneMediator);
 	sceneManager->AddScene(SceneName::END, *endScene);
-	AbstractScene* gameMainScene = new GameMainScene(ScreenDesc::WIDTH, ScreenDesc::HEIGHT, soundEngine, sceneMediator);
+	AbstractScene* gameMainScene = new GameMainScene(ScreenDesc::WIDTH, ScreenDesc::HEIGHT, sceneMediator);
 	sceneManager->AddScene(SceneName::GAME_MAIN, *gameMainScene);
 	sceneManager->ChangeScene(SceneName::TITLE);
 }

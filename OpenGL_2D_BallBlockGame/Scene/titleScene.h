@@ -9,12 +9,12 @@ class TitleScene :
     public AbstractScene
 {
     public:
-        TitleScene(unsigned int width, unsigned int height, ISoundEngine* soundEngine, SceneMediator* sceneMediator);
+        TitleScene(unsigned int width, unsigned int height, SceneMediator* sceneMediator);
 
-        virtual void Init() override;
-        virtual void Update(float dt) override;
-        virtual void Render(SpriteRenderer* renderer) override;
-        virtual void ProcessInput(float dt) override;
+        void Init() override;
+        void Update(float dt) override;
+        void Render(SpriteRenderer* renderer) override;
+        void ProcessInput(float dt) override;
         unsigned int GetLevel();
 
     private:

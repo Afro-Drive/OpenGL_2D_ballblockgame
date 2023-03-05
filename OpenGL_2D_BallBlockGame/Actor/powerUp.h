@@ -1,18 +1,32 @@
 #ifndef POWER_UP_H
 #define POWER_UP_H
 
-#include <gameObject.h>
-
-#include<string>
 #include<glm/glm.hpp>
 
+#include <gameObject.h>
 #include<texture.h>
+
+// forward declare
+class Player;
+class GameObjectMediator;
+class BoxCollider2D;
+class Collider2D;
 
 
 // The size of a PowerUp block
 const glm::vec2 SIZE(60.0f, 20.0f);
 // Velocity a PowerUp block has when spawned
 const glm::vec2 VELOCITY(0.0f, 150.0f);
+
+enum class PowerUpType
+{
+    STICKY,
+    PASS_THROUGH,
+    CONFUSE,
+    CHAOS,
+    SPEED,
+    PAD_SIZE_INCREASE,
+};
 
 
 /// <summary>
@@ -26,14 +40,16 @@ class PowerUp :
 {
     public:
         // powerup state
-        std::string Type;
+        PowerUpType Type;
         float       Duration;
         bool        Activated;
         // constructor
-        PowerUp(std::string type ,glm::vec3 color, float duration, glm::vec2 position, Texture2D texture)
-            :GameObject(position, SIZE, texture, color, VELOCITY),
+        PowerUp(PowerUpType type ,glm::vec3 color, float duration, glm::vec2 position, Texture2D texture, GameObjectMediator& mediator, BoxCollider2D* collider, GameTag myTag = GameTag::NONE)
+            :GameObject(position, SIZE, texture, (Collider2D*)collider, mediator, myTag, color, VELOCITY),
              Type(type), Duration(duration), Activated()
         { }
+        void Update(float dt);
+        void DoSpecialOnCollision() override;
 };
 
 #endif

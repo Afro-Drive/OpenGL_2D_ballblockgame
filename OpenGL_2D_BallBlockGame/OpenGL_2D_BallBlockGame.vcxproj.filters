@@ -70,6 +70,18 @@
     <Filter Include="ヘッダー ファイル\Effect">
       <UniqueIdentifier>{324bbd99-b912-4365-b8a4-8cf1f9fa197d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\Define">
+      <UniqueIdentifier>{0a7e34e6-9ce0-4b40-b47b-f26cdedf15f1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\Define">
+      <UniqueIdentifier>{71d1a0b1-dc5c-43e6-b957-31ee245a7aaf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\Actor\Level">
+      <UniqueIdentifier>{b178855e-53c2-4650-af22-8047a731a335}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Actor\Level">
+      <UniqueIdentifier>{d03d30dd-ca5d-44f5-9255-f0800f1db01b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="program.cpp">
@@ -81,35 +93,65 @@
     <ClCompile Include="game.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="shader.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="texture.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="resourceManager.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
     <ClCompile Include="stb.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="gameObject.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="gameLevel.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="ballObject.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="postProcessor.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="spriteRenderer.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
     <ClCompile Include="UI\textRenderer.cpp">
       <Filter>ソース ファイル\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="Device\input.cpp">
+      <Filter>ソース ファイル\Device</Filter>
+    </ClCompile>
+    <ClCompile Include="Define\screenDesc.cpp">
+      <Filter>ソース ファイル\Define</Filter>
+    </ClCompile>
+    <ClCompile Include="Actor\Level\gameLevel.cpp">
+      <Filter>ソース ファイル\Actor\Level</Filter>
+    </ClCompile>
+    <ClCompile Include="Actor\ballCollider.cpp">
+      <Filter>ソース ファイル\Actor</Filter>
+    </ClCompile>
+    <ClCompile Include="Actor\ballObject.cpp">
+      <Filter>ソース ファイル\Actor</Filter>
+    </ClCompile>
+    <ClCompile Include="Actor\boxCollider.cpp">
+      <Filter>ソース ファイル\Actor</Filter>
+    </ClCompile>
+    <ClCompile Include="Actor\brock.cpp">
+      <Filter>ソース ファイル\Actor</Filter>
+    </ClCompile>
+    <ClCompile Include="Actor\collider.cpp">
+      <Filter>ソース ファイル\Actor</Filter>
+    </ClCompile>
+    <ClCompile Include="Actor\gameObjectMediator.cpp">
+      <Filter>ソース ファイル\Actor</Filter>
+    </ClCompile>
+    <ClCompile Include="Actor\player.cpp">
+      <Filter>ソース ファイル\Actor</Filter>
+    </ClCompile>
+    <ClCompile Include="Actor\powerUp.cpp">
+      <Filter>ソース ファイル\Actor</Filter>
+    </ClCompile>
+    <ClCompile Include="Actor\powerUpManager.cpp">
+      <Filter>ソース ファイル\Actor</Filter>
+    </ClCompile>
+    <ClCompile Include="Device\resourceManager.cpp">
+      <Filter>ソース ファイル\Device</Filter>
+    </ClCompile>
+    <ClCompile Include="Device\spriteRenderer.cpp">
+      <Filter>ソース ファイル\Device</Filter>
+    </ClCompile>
+    <ClCompile Include="Effect\particleGenerator.cpp">
+      <Filter>ソース ファイル\Effect</Filter>
+    </ClCompile>
+    <ClCompile Include="Effect\postProcessor.cpp">
+      <Filter>ソース ファイル\Effect</Filter>
+    </ClCompile>
+    <ClCompile Include="Effect\shader.cpp">
+      <Filter>ソース ファイル\Effect</Filter>
+    </ClCompile>
+    <ClCompile Include="Effect\texture.cpp">
+      <Filter>ソース ファイル\Effect</Filter>
     </ClCompile>
     <ClCompile Include="Scene\abstractScene.cpp">
       <Filter>ソース ファイル\Scene</Filter>
@@ -123,23 +165,14 @@
     <ClCompile Include="Scene\sceneManager.cpp">
       <Filter>ソース ファイル\Scene</Filter>
     </ClCompile>
-    <ClCompile Include="Effect\particleGenerator.cpp">
-      <Filter>ソース ファイル\Effect</Filter>
+    <ClCompile Include="Scene\sceneMediator.cpp">
+      <Filter>ソース ファイル\Scene</Filter>
     </ClCompile>
     <ClCompile Include="Scene\titleScene.cpp">
       <Filter>ソース ファイル\Scene</Filter>
     </ClCompile>
-    <ClCompile Include="Device\input.cpp">
-      <Filter>ソース ファイル\Device</Filter>
-    </ClCompile>
-    <ClCompile Include="Actor\powerUp.cpp">
-      <Filter>ソース ファイル\Actor</Filter>
-    </ClCompile>
-    <ClCompile Include="screenDesc.cpp">
+    <ClCompile Include="gameObject.cpp">
       <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="Scene\sceneMediator.cpp">
-      <Filter>ソース ファイル\Scene</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -149,50 +182,8 @@
     <ClInclude Include="game.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="shader.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="texture.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="resourceManager.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="spriteRenderer.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="gameObject.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="gameLevel.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="ballObject.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="postProcessor.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
     <ClInclude Include="UI\textRenderer.h">
       <Filter>ヘッダー ファイル\UI</Filter>
-    </ClInclude>
-    <ClInclude Include="Scene\abstractScene.h">
-      <Filter>ヘッダー ファイル\Scene</Filter>
-    </ClInclude>
-    <ClInclude Include="Scene\endScene.h">
-      <Filter>ヘッダー ファイル\Scene</Filter>
-    </ClInclude>
-    <ClInclude Include="Scene\gameMainScene.h">
-      <Filter>ヘッダー ファイル\Scene</Filter>
-    </ClInclude>
-    <ClInclude Include="Scene\iScene.h">
-      <Filter>ヘッダー ファイル\Scene</Filter>
-    </ClInclude>
-    <ClInclude Include="Scene\sceneManager.h">
-      <Filter>ヘッダー ファイル\Scene</Filter>
-    </ClInclude>
-    <ClInclude Include="MyInclude\spriteRendererh.h">
-      <Filter>ヘッダー ファイル\MyInclude</Filter>
     </ClInclude>
     <ClInclude Include="MyInclude\resourceManager.h">
       <Filter>ヘッダー ファイル\MyInclude</Filter>
@@ -224,9 +215,6 @@
     <ClInclude Include="MyInclude\powerUp.h">
       <Filter>ヘッダー ファイル\MyInclude</Filter>
     </ClInclude>
-    <ClInclude Include="Scene\titleScene.h">
-      <Filter>ヘッダー ファイル\Scene</Filter>
-    </ClInclude>
     <ClInclude Include="MyInclude\texture.h">
       <Filter>ヘッダー ファイル\MyInclude</Filter>
     </ClInclude>
@@ -236,14 +224,107 @@
     <ClInclude Include="MyInclude\gameObject.h">
       <Filter>ヘッダー ファイル\MyInclude</Filter>
     </ClInclude>
+    <ClInclude Include="Define\screenDesc.h">
+      <Filter>ヘッダー ファイル\Define</Filter>
+    </ClInclude>
+    <ClInclude Include="MyInclude\screenDesc.h">
+      <Filter>ヘッダー ファイル\MyInclude</Filter>
+    </ClInclude>
+    <ClInclude Include="MyInclude\gameMainScene.h">
+      <Filter>ヘッダー ファイル\MyInclude</Filter>
+    </ClInclude>
+    <ClInclude Include="MyInclude\brock.h">
+      <Filter>ヘッダー ファイル\MyInclude</Filter>
+    </ClInclude>
+    <ClInclude Include="MyInclude\player.h">
+      <Filter>ヘッダー ファイル\MyInclude</Filter>
+    </ClInclude>
+    <ClInclude Include="MyInclude\spriteRenderer.h">
+      <Filter>ヘッダー ファイル\MyInclude</Filter>
+    </ClInclude>
+    <ClInclude Include="Actor\Level\gameLevel.h">
+      <Filter>ヘッダー ファイル\Actor\Level</Filter>
+    </ClInclude>
+    <ClInclude Include="gameObject.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="Actor\ballCollider.h">
+      <Filter>ヘッダー ファイル\Actor</Filter>
+    </ClInclude>
+    <ClInclude Include="Actor\ballObject.h">
+      <Filter>ヘッダー ファイル\Actor</Filter>
+    </ClInclude>
+    <ClInclude Include="Actor\boxCollider.h">
+      <Filter>ヘッダー ファイル\Actor</Filter>
+    </ClInclude>
+    <ClInclude Include="Actor\brock.h">
+      <Filter>ヘッダー ファイル\Actor</Filter>
+    </ClInclude>
+    <ClInclude Include="Actor\collider.h">
+      <Filter>ヘッダー ファイル\Actor</Filter>
+    </ClInclude>
+    <ClInclude Include="Actor\gameObjectMediator.h">
+      <Filter>ヘッダー ファイル\Actor</Filter>
+    </ClInclude>
+    <ClInclude Include="Actor\player.h">
+      <Filter>ヘッダー ファイル\Actor</Filter>
+    </ClInclude>
     <ClInclude Include="Actor\powerUp.h">
       <Filter>ヘッダー ファイル\Actor</Filter>
     </ClInclude>
-    <ClInclude Include="screenDesc.h">
-      <Filter>ヘッダー ファイル</Filter>
+    <ClInclude Include="Actor\powerUpManager.h">
+      <Filter>ヘッダー ファイル\Actor</Filter>
+    </ClInclude>
+    <ClInclude Include="Device\resourceManager.h">
+      <Filter>ヘッダー ファイル\Device</Filter>
+    </ClInclude>
+    <ClInclude Include="Device\spriteRenderer.h">
+      <Filter>ヘッダー ファイル\Device</Filter>
+    </ClInclude>
+    <ClInclude Include="Effect\postProcessor.h">
+      <Filter>ヘッダー ファイル\Effect</Filter>
+    </ClInclude>
+    <ClInclude Include="Effect\shader.h">
+      <Filter>ヘッダー ファイル\Effect</Filter>
+    </ClInclude>
+    <ClInclude Include="Effect\texture.h">
+      <Filter>ヘッダー ファイル\Effect</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\abstractScene.h">
+      <Filter>ヘッダー ファイル\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\endScene.h">
+      <Filter>ヘッダー ファイル\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\gameMainScene.h">
+      <Filter>ヘッダー ファイル\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\iScene.h">
+      <Filter>ヘッダー ファイル\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\sceneManager.h">
+      <Filter>ヘッダー ファイル\Scene</Filter>
     </ClInclude>
     <ClInclude Include="Scene\sceneMediator.h">
       <Filter>ヘッダー ファイル\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\titleScene.h">
+      <Filter>ヘッダー ファイル\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="MyInclude\gameObjectMediator.h">
+      <Filter>ヘッダー ファイル\MyInclude</Filter>
+    </ClInclude>
+    <ClInclude Include="MyInclude\powerUpManager.h">
+      <Filter>ヘッダー ファイル\MyInclude</Filter>
+    </ClInclude>
+    <ClInclude Include="MyInclude\ballCollider.h">
+      <Filter>ヘッダー ファイル\MyInclude</Filter>
+    </ClInclude>
+    <ClInclude Include="MyInclude\collider.h">
+      <Filter>ヘッダー ファイル\MyInclude</Filter>
+    </ClInclude>
+    <ClInclude Include="MyInclude\boxCollider.h">
+      <Filter>ヘッダー ファイル\MyInclude</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -5,7 +5,7 @@
 #include<ft2build.h>
 #include FT_FREETYPE_H
 
-#include"../resourceManager.h"
+#include<resourceManager.h>
 
 TextRenderer::TextRenderer(unsigned int width, unsigned int height)
 {

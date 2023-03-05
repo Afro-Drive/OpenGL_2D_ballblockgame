@@ -2,6 +2,9 @@
 
 #include<iostream>
 
+#include<spriteRenderer.h>
+#include<textRenderer.h>
+
 SceneManager* SceneManager::Instance = nullptr;
 
 
@@ -12,7 +15,7 @@ SceneManager::SceneManager()
 SceneManager::~SceneManager()
 {
 	// delete(and execute destructor) each scene pointer
-	for (std::pair<SceneName, AbstractScene*> scenePair : sceneMap)
+	for (auto scenePair : sceneMap)
 		delete scenePair.second;
 
 	// Clear all element of map
@@ -32,6 +35,11 @@ void SceneManager::DestroySelf()
 	delete Instance;
 }
 
+std::map<SceneName, AbstractScene*> SceneManager::GetSceneMap()
+{
+	return sceneMap;
+}
+
 void SceneManager::ChangeScene(SceneName nextScene)
 {
 	// scene is not found, do nothing
@@ -48,10 +56,7 @@ void SceneManager::ChangeScene(SceneName nextScene)
 	currentSceneName = nextScene;
 }
 
-std::map<SceneName, AbstractScene*> SceneManager::GetSceneMap()
-{
-	return sceneMap;
-}
+
 
 void SceneManager::RunScene(SpriteRenderer& renderer, float dt)
 {
@@ -68,10 +73,5 @@ void SceneManager::AddScene(SceneName sceneName, AbstractScene& newScene)
 	sceneMap[sceneName] = &newScene;
 	currentScene = &newScene;
 	currentSceneName = sceneName;
-}
-
-AbstractScene* SceneManager::GetCurrentScene()
-{
-	return currentScene;
 }
 

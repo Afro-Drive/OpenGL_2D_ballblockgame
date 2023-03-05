@@ -1,7 +1,12 @@
 #include "endScene.h"
 
-EndScene::EndScene(unsigned int width, unsigned int height, ISoundEngine* soundEngine, SceneMediator* sceneMediator)
-	:AbstractScene(width, height, soundEngine, sceneMediator) { }
+#include<textRenderer.h>
+#include<postProcessor.h>
+#include<input.h>
+
+
+EndScene::EndScene(unsigned int width, unsigned int height, SceneMediator* sceneMediator)
+	:AbstractScene(width, height, sceneMediator) { }
 
 EndScene::~EndScene()
 {
