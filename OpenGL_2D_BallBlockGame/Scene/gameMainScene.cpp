@@ -57,9 +57,10 @@ void GameMainScene::Init()
 {
 	// scene related
 	nextScene = SceneName::END;
+	isEnd = false;
+
 	// load levels
-	if (!loadedStage)
-		LoadStageData();
+	this->LoadStageData();
 
 	this->level = this->sceneMediator->ShareLevel();
 	this->lives = 3;
@@ -85,9 +86,6 @@ void GameMainScene::Init()
 	Ball->SetCollider(*ballCollider);
 
 	player->SetTargetBall(Ball);
-	
-	// Audio
-	this->sceneMediator->getSoundEngine()->play2D("Audio/BGM/breakout.mp3", true);
 }
 
 void GameMainScene::Update(float dt)
@@ -108,6 +106,7 @@ void GameMainScene::Update(float dt)
 		{
 			// Game over
 			this->ResetLevel();
+			this->ResetPlayer();
 			this->isEnd = true;
 		}
 		this->ResetPlayer();
@@ -335,16 +334,16 @@ void GameMainScene::ResetPlayer()
 
 void GameMainScene::ResetLevel()
 {
-	if (this->level == 0)
-		this->stageVector[0]->Load("Levels/one.lvl", this->width, this->height / 2);
-	if (this->level == 1)
-		this->stageVector[1]->Load("Levels/two.lvl", this->width, this->height / 2);
-	if (this->level == 2)
-		this->stageVector[2]->Load("Levels/three.lvl", this->width, this->height / 2);
-	if (this->level == 3)
-		this->stageVector[3]->Load("Levels/four.lvl", this->width, this->height / 2);
+	bool reload = false;
 
-	this->lives = 3;
+	if (this->level == 0)
+		this->stageVector[0]->Load("Levels/one.lvl", this->width, this->height / 2, reload);
+	if (this->level == 1)
+		this->stageVector[1]->Load("Levels/two.lvl", this->width, this->height / 2, reload);
+	if (this->level == 2)
+		this->stageVector[2]->Load("Levels/three.lvl", this->width, this->height / 2, reload);
+	if (this->level == 3)
+		this->stageVector[3]->Load("Levels/four.lvl", this->width, this->height / 2, reload);
 }
 
 //bool ShouldSpawn(unsigned int chance)
@@ -472,21 +471,34 @@ void GameMainScene::ResetLevel()
 
 bool GameMainScene::LoadStageData()
 {
-	GameLevel* one = new GameLevel(*(this->gameObjectMediator));
-	one->Load("Levels/one.lvl", this->width, this->height / 2);
-	GameLevel* two = new GameLevel(*(this->gameObjectMediator));
-	two->Load("Levels/two.lvl", this->width, this->height / 2);
-	GameLevel* three = new GameLevel(*(this->gameObjectMediator));
-	three->Load("Levels/three.lvl", this->width, this->height / 2);
-	GameLevel* four = new GameLevel(*(this->gameObjectMediator));
-	four->Load("Levels/four.lvl", this->width, this->height / 2);
+	bool loadFile = true;
+	if (!isLoadedStage)
+	{
+		GameLevel* one = new GameLevel(*(this->gameObjectMediator));
+		GameLevel* two = new GameLevel(*(this->gameObjectMediator));
+		GameLevel* three = new GameLevel(*(this->gameObjectMediator));
+		GameLevel* four = new GameLevel(*(this->gameObjectMediator));
+		
+		one->Load("Levels/one.lvl", this->width, this->height / 2, loadFile);
+		two->Load("Levels/two.lvl", this->width, this->height / 2, loadFile);
+		three->Load("Levels/three.lvl", this->width, this->height / 2, loadFile);
+		four->Load("Levels/four.lvl", this->width, this->height / 2, loadFile);
 
-	this->stageVector.push_back(one);
-	this->stageVector.push_back(two);
-	this->stageVector.push_back(three);
-	this->stageVector.push_back(four);
+		this->stageVector.push_back(one);
+		this->stageVector.push_back(two);
+		this->stageVector.push_back(three);
+		this->stageVector.push_back(four);
 
-	this->loadedStage = true;
+		this->isLoadedStage = true;
+	}
+	else
+	{
+		loadFile = false;
+		this->stageVector[0]->Load("Levels/one.lvl", this->width, this->height / 2, loadFile);
+		this->stageVector[1]->Load("Levels/two.lvl", this->width, this->height / 2, loadFile);
+		this->stageVector[2]->Load("Levels/three.lvl", this->width, this->height / 2, loadFile);
+		this->stageVector[3]->Load("Levels/four.lvl", this->width, this->height / 2, loadFile);
+	}
 
-	return loadedStage;
+	return isLoadedStage;
 }

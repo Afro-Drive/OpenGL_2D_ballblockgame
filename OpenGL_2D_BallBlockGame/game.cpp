@@ -138,6 +138,9 @@ void Game::Init()
 	AbstractScene* gameMainScene = new GameMainScene(ScreenDesc::WIDTH, ScreenDesc::HEIGHT, sceneMediator);
 	sceneManager->AddScene(SceneName::GAME_MAIN, *gameMainScene);
 	sceneManager->ChangeScene(SceneName::TITLE);
+
+	// Audio
+	soundEngine->play2D("Audio/BGM/breakout.mp3", true);
 }
 
 //void Game::ProcessInput(float dt)

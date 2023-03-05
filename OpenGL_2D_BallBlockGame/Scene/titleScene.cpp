@@ -11,6 +11,7 @@ TitleScene::TitleScene(unsigned int width, unsigned int height, SceneMediator* s
 void TitleScene::Init()
 {
 	this->nextScene = SceneName::GAME_MAIN;
+	isEnd = false;
 }
 
 void TitleScene::Update(float dt)

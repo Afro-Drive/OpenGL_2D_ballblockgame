@@ -23,7 +23,7 @@ void Brock::Update(float dt)
 void Brock::DoSpecialOnCollision()
 {
 	// switch sound effects
-	this->IsSolid ?
+	this->IsSolid() ?
 		this->mediator->getSoundEngine()->play2D("Audio/SE/solid.wav", false)
 		:
 		this->mediator->getSoundEngine()->play2D("Audio/SE/bleep.mp3", false);

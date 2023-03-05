@@ -52,7 +52,10 @@ void Player::Update(float dt)
 		}
 	}
 	if (Input::Keys[GLFW_KEY_SPACE])
+	{
 		ball->Stuck = false;
+		ball->Sticky = false;
+	}
 
 	this->collider->Update(dt);
 }

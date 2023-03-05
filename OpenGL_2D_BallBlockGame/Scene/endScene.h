@@ -15,6 +15,8 @@ class EndScene :
         void Update(float dt) override;
         void Render(SpriteRenderer* renderer) override;
         void ProcessInput(float dt) override;
+    private:
+        bool isComplete;
 };
 
 #endif // !END_SCENE_H

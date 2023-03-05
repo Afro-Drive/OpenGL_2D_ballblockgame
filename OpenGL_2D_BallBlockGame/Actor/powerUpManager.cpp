@@ -19,9 +19,7 @@ PowerUpManager::PowerUpManager(GameObjectMediator& mediator)
 PowerUpManager::~PowerUpManager()
 {
 	for (PowerUp* powerUp : this->powerUps)
-	{
 		delete powerUp;
-	}
 	powerUps.clear();
 }
 
@@ -34,12 +32,12 @@ void PowerUpManager::Update(float dt)
 	for (PowerUp* powerUp : this->powerUps)
     {
 		// update for no destroyed object
-		if (!powerUp->Destroyed)
+		if (!powerUp->Destroyed())
 		{
 			powerUp->Update(dt);
 
 			if (powerUp->Position.y >= this->mediator->GetScreenSize().y)
-				powerUp->Destroyed = true;
+				powerUp->SetDestroyed(true);
 
 			Collision onCollision = powerUp->GetCollider()->DoCollision(*(player->GetCollider()));
 			if (std::get<0>(onCollision))
@@ -59,13 +57,13 @@ void PowerUpManager::Update(float dt)
 		std::remove_if(
 			this->powerUps.begin(),
 			this->powerUps.end(),
-			[](const PowerUp* powerUp) { return powerUp->Destroyed && !powerUp->Activated; }),
+			[](const PowerUp* powerUp) { return powerUp->Destroyed() && !powerUp->Activated; }),
 		this->powerUps.end());
 }
 
 void PowerUpManager::ActivatePowerUp(PowerUp& powerUp, BallObject& ball, Player& player, PostProcessor& effects)
 {
-	powerUp.Destroyed = true;
+	powerUp.SetDestroyed(true);
 	powerUp.Activated = true;
 	
 	switch (powerUp.Type)
@@ -83,6 +81,7 @@ void PowerUpManager::ActivatePowerUp(PowerUp& powerUp, BallObject& ball, Player&
 		break;
 	case PowerUpType::PAD_SIZE_INCREASE:
 		player.Size.x += 50;
+		player.GetCollider()->Size.x = player.Size.x;
 		break;
 	case PowerUpType::CONFUSE:
 		if (!effects.Confuse)
@@ -201,7 +200,23 @@ void PowerUpManager::Spawn(glm::vec2 spawnPos)
 void PowerUpManager::Draw(SpriteRenderer& renderer)
 {
 	for (PowerUp* powerUp : this->powerUps)
-		if (!powerUp->Destroyed)
+		if (!powerUp->Destroyed())
 			powerUp->Draw(renderer);
+}
+
+void PowerUpManager::Init()
+{
+	Player* player = static_cast<Player*>(this->mediator->SurveyActiveGameObject(GameTag::PLAYER));
+	BallObject* ball = static_cast<BallObject*>(this->mediator->SurveyActiveGameObject(GameTag::BALL));
+
+	for (PowerUp* powerUp : this->powerUps)
+	{
+		if (!powerUp->Destroyed())
+			powerUp->SetDestroyed(true);
+		if (powerUp->Activated)
+			this->InActivatePowerUp(*powerUp, *ball, *player, *(this->mediator->GetEffects()));
+		delete powerUp;
+	}
+	this->powerUps.clear();
 }
 

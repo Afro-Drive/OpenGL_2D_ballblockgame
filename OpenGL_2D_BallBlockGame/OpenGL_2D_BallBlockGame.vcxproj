@@ -186,6 +186,7 @@
     <ClInclude Include="Scene\sceneManager.h" />
     <ClInclude Include="Scene\sceneMediator.h" />
     <ClInclude Include="Scene\titleScene.h" />
+    <ClInclude Include="UI\baseUI.h" />
     <ClInclude Include="UI\textRenderer.h" />
   </ItemGroup>
   <ItemGroup>
@@ -218,6 +219,7 @@
     <ClCompile Include="Scene\sceneMediator.cpp" />
     <ClCompile Include="Scene\titleScene.cpp" />
     <ClCompile Include="stb.cpp" />
+    <ClCompile Include="UI\baseUI.cpp" />
     <ClCompile Include="UI\textRenderer.cpp" />
   </ItemGroup>
   <ItemGroup>

@@ -22,11 +22,17 @@ class SceneMediator
         /// <returns></returns>
         std::vector<GameLevel*> ShareStages();
         unsigned int ShareLevel();
+        unsigned int ShareLives();
         ISoundEngine* getSoundEngine();
 
     private:
         std::vector<GameLevel*> stages;
         ISoundEngine* soundEngine;
 };
+
+inline ISoundEngine* SceneMediator::getSoundEngine()
+{
+    return this->soundEngine;
+}
 
 #endif // !SCENE_MEDIATOR_H

@@ -95,6 +95,8 @@ Collision BallCollider2D::DoCollision(BallCollider2D& other)
 void BallCollider2D::CalcPhysicsByPlayer(Player& other)
 {
 	BallObject* target = static_cast<BallObject*>(this->target);
+	if (target->Stuck)
+		return;
 
 	// check where it hit the board, and change velocity based on where it hit the board
 	float centerBoard = other.Position.x + other.Size.x / 2.0f;
@@ -115,7 +117,7 @@ void BallCollider2D::CalcPhysicsByPlayer(Player& other)
 void BallCollider2D::CalcPhysicsByBrock(Brock& other, Collision preResult)
 {
 	BallObject* target = static_cast<BallObject*>(this->target);
-	if (target->PassThrough) // early guard
+	if (!other.IsSolid() && target->PassThrough) // early guard
 		return;
 
 	// collision resolution

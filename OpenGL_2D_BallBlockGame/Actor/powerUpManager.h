@@ -22,6 +22,7 @@ class PowerUpManager
 		void Update(float dt);
 		void Spawn(glm::vec2 spawnPos);
 		void Draw(SpriteRenderer& renderer);
+		void Init();
 
 	private:
 		void InActivatePowerUp(PowerUp& powerUp, BallObject& ball, Player& player, PostProcessor& effects);

@@ -26,35 +26,41 @@ GameLevel::~GameLevel()
 	delete this->powerUpManager;
 }
 
-void GameLevel::Load(const char* file, unsigned int levelWidth, unsigned int levelHeihgt)
+void GameLevel::Load(const char* file, unsigned int levelWidth, unsigned int levelHeihgt, bool firstLoad)
 {
 	// clear old data
 	this->Bricks.clear();
-	// load from file
-	unsigned int tileCode;
-	std::string line;
-	std::ifstream fstream(file);
-	std::vector<std::vector<unsigned int>> tileData;
 
-	if (fstream)
+	// only first time, perform file loading
+	if (firstLoad)
 	{
-		while (std::getline(fstream, line)) // read each line from level file
+		// load from file
+		unsigned int tileCode;
+		std::string line;
+		std::ifstream fstream(file);
+
+		if (fstream)
 		{
-			std::istringstream sstream(line);
-			std::vector<unsigned int> row;
-			while (sstream >> tileCode) // read each word separated by spaces
-				row.push_back(tileCode);
-			tileData.push_back(row);
+			while (std::getline(fstream, line)) // read each line from level file
+			{
+				std::istringstream sstream(line);
+				std::vector<unsigned int> row;
+				while (sstream >> tileCode) // read each word separated by spaces
+					row.push_back(tileCode);
+				tileData.push_back(row);
+			}
 		}
-		if (tileData.size() > 0)
-			this->init(tileData, levelWidth, levelHeihgt);
 	}
+	if (tileData.size() > 0)
+		this->DesignData(levelWidth, levelHeihgt);
+
+	this->powerUpManager->Init();
 }
 
 void GameLevel::Draw(SpriteRenderer& renderer)
 {
 	for (Brock* tile : this->Bricks)
-		if (!tile->Destroyed)
+		if (!tile->Destroyed())
 			tile->Draw(renderer);
 
 	powerUpManager->Draw(renderer);
@@ -62,8 +68,8 @@ void GameLevel::Draw(SpriteRenderer& renderer)
 
 bool GameLevel::IsCompleted()
 {
-	for (GameObject* tile : this->Bricks)
-		if (!tile->IsSolid && !tile->Destroyed)
+	for (Brock* tile : this->Bricks)
+		if (!tile->IsSolid() && !tile->Destroyed())
 			return false;
 
 	return true;
@@ -75,15 +81,15 @@ void GameLevel::JudgeCollision()
 	GameObject* ballObj = static_cast<BallObject*>(this->mediator->SurveyActiveGameObject(GameTag::BALL));
 	for (Brock* box : this->Bricks)
 	{
-		if (box->Destroyed)
+		if (box->Destroyed())
 			continue;
 
 		Collision onCollision = box->GetCollider()->DoCollision(*(ballObj->GetCollider()));
 		if (std::get<0>(onCollision))
 		{
-			if (!box->IsSolid)
+			if (!box->IsSolid())
 			{
-				box->Destroyed = true;
+				box->SetDestroyed(true);
 				box->DoSpecialOnCollision();
 				this->powerUpManager->Spawn(box->Position);
 			}
@@ -119,7 +125,7 @@ void GameLevel::Update(float dt)
 	this->powerUpManager->Update(dt);
 }
 
-void GameLevel::init(std::vector<std::vector<unsigned int>> tileData, unsigned int levelWidth, unsigned int levelHeight)
+void GameLevel::DesignData(unsigned int levelWidth, unsigned int levelHeight)
 {
 	shakeTime = 0.0f;
 
@@ -151,7 +157,7 @@ void GameLevel::init(std::vector<std::vector<unsigned int>> tileData, unsigned i
 				);
 				collider = new BoxCollider2D(pos, size, *brockObj, *(this->mediator));
 				brockObj->SetCollider(*collider);
-				brockObj->IsSolid = true;
+				brockObj->SetIsSolid(true);
 				this->Bricks.push_back(brockObj);
 			}
 			else if (targetUnit > 1)

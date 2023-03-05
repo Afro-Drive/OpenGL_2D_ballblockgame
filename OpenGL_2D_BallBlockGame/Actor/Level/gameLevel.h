@@ -28,7 +28,7 @@ class GameLevel
 		GameLevel(GameObjectMediator& mediator);
 		~GameLevel();
 		// loads level from file
-		void Load(const char* file, unsigned int levelWidth, unsigned int levelHeihgt);
+		void Load(const char* file, unsigned int levelWidth, unsigned int levelHeihgt, bool firstLoad);
 		// render level
 		void Draw(SpriteRenderer& renderer);
 		void Update(float dt);
@@ -39,9 +39,10 @@ class GameLevel
 		GameObjectMediator* mediator;        
 		PowerUpManager* powerUpManager;
 		float shakeTime;
+		std::vector<std::vector<unsigned int>> tileData;
 
 		// initialize level from tile data
-		void init(std::vector<std::vector<unsigned int>> tileData,unsigned int levelWidth, unsigned int levelHeight);
+		void DesignData(unsigned int levelWidth, unsigned int levelHeight);
 };
 
 #endif

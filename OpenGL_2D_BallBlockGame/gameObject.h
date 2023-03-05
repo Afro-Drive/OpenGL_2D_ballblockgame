@@ -31,8 +31,7 @@ class GameObject
 		glm::vec2 Position, Size, Velocity;
 		glm::vec3 Color;
 		float     Rotation;
-		bool      IsSolid;
-		bool      Destroyed;
+		
 		// render state
 		Texture2D Sprite;
 		// constructor(s)
