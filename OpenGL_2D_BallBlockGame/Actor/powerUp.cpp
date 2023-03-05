@@ -5,11 +5,12 @@
 #include<player.h>
 #include<gameObjectMediator.h>
 #include"boxCollider.h"
+#include<transform.h>
 
 void PowerUp::Update(float dt)
 {
-	this->collider->Position = this->Position;
-	this->Position += this->Velocity * dt;
+	this->transform->Position += this->transform->Velocity * dt;
+	this->transform->GetCollider()->transform->Position = this->transform->Position;
 }
 
 void PowerUp::DoSpecialOnCollision()

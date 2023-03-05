@@ -24,7 +24,6 @@ class GameLevel
 		// level state
 		std::vector<Brock*> Bricks;
 		// constructor
-		GameLevel() { };
 		GameLevel(GameObjectMediator& mediator);
 		~GameLevel();
 		// loads level from file

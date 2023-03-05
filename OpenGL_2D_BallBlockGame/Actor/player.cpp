@@ -10,6 +10,7 @@
 #include"boxCollider.h"
 #include"powerUp.h"
 #include<gameObjectMediator.h>
+#include<transform.h>
 
 
 const float BASE_VELOCITY(500.0f);
@@ -21,7 +22,6 @@ Player::Player(glm::vec2 pos, glm::vec2 size, Texture2D sprite, GameObjectMediat
 
 Player::~Player()
 {
-	delete collider;
 }
 
 void Player::Draw(SpriteRenderer& renderer)
@@ -35,20 +35,20 @@ void Player::Update(float dt)
 
 	if(Input::Keys[GLFW_KEY_A])
 	{
-		if (this->Position.x >= 0.0f)
+		if (this->transform->Position.x >= 0.0f)
 		{
-			this->Position.x -= velocity;
+			this->transform->Position.x -= velocity;
 			if (ball->Stuck)
-				ball->Position.x -= velocity;
+				ball->transform->Position.x -= velocity;
 		}
 	}
 	if (Input::Keys[GLFW_KEY_D])
 	{
-		if (this->Position.x <= ScreenDesc::WIDTH - this->Size.x)
+		if (this->transform->Position.x <= ScreenDesc::WIDTH - this->transform->Size.x)
 		{
-			this->Position.x += velocity;
+			this->transform->Position.x += velocity;
 			if (ball->Stuck)
-				ball->Position.x += velocity;
+				ball->transform->Position.x += velocity;
 		}
 	}
 	if (Input::Keys[GLFW_KEY_SPACE])
@@ -57,7 +57,7 @@ void Player::Update(float dt)
 		ball->Sticky = false;
 	}
 
-	this->collider->Update(dt);
+	this->transform->GetCollider()->Update(dt);
 }
 
 void Player::DoSpecialOnCollision()

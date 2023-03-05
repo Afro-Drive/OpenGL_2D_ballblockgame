@@ -31,8 +31,7 @@ class BallObject :
         float Radius;
         bool  Stuck;
         bool  Sticky, PassThrough;
-        // constructor(s)
-        BallObject();
+        // constructor
         BallObject(glm::vec2 pos, float radius, glm::vec2 velocity, Texture2D sprite, BallCollider2D* collider, GameObjectMediator& mediator, GameTag myTag = GameTag::BALL);
         // moves the ball, keeping it constrained within the window bounds (except bottom edge); returns new position
         void Move(float dt);

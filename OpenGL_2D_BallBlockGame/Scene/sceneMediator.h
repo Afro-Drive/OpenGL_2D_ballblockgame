@@ -11,7 +11,6 @@ using namespace irrklang;
 class SceneMediator
 {
     public:
-        SceneMediator() { };
         SceneMediator(ISoundEngine& soundEngine);
         ~SceneMediator();
 

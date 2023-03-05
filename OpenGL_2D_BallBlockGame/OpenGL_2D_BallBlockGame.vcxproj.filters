@@ -82,6 +82,12 @@
     <Filter Include="ソース ファイル\Actor\Level">
       <UniqueIdentifier>{d03d30dd-ca5d-44f5-9255-f0800f1db01b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\Physics">
+      <UniqueIdentifier>{6fc5a87f-6410-4c63-ad5b-dc30c8d5b309}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\Physics">
+      <UniqueIdentifier>{d06cb1ed-b488-4781-a550-0e2b47d4f829}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="program.cpp">
@@ -108,19 +114,10 @@
     <ClCompile Include="Actor\Level\gameLevel.cpp">
       <Filter>ソース ファイル\Actor\Level</Filter>
     </ClCompile>
-    <ClCompile Include="Actor\ballCollider.cpp">
-      <Filter>ソース ファイル\Actor</Filter>
-    </ClCompile>
     <ClCompile Include="Actor\ballObject.cpp">
       <Filter>ソース ファイル\Actor</Filter>
     </ClCompile>
-    <ClCompile Include="Actor\boxCollider.cpp">
-      <Filter>ソース ファイル\Actor</Filter>
-    </ClCompile>
     <ClCompile Include="Actor\brock.cpp">
-      <Filter>ソース ファイル\Actor</Filter>
-    </ClCompile>
-    <ClCompile Include="Actor\collider.cpp">
       <Filter>ソース ファイル\Actor</Filter>
     </ClCompile>
     <ClCompile Include="Actor\gameObjectMediator.cpp">
@@ -176,6 +173,18 @@
     </ClCompile>
     <ClCompile Include="UI\baseUI.cpp">
       <Filter>ソース ファイル\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="Physics\ballCollider.cpp">
+      <Filter>ソース ファイル\Physics</Filter>
+    </ClCompile>
+    <ClCompile Include="Physics\boxCollider.cpp">
+      <Filter>ソース ファイル\Physics</Filter>
+    </ClCompile>
+    <ClCompile Include="Physics\collider.cpp">
+      <Filter>ソース ファイル\Physics</Filter>
+    </ClCompile>
+    <ClCompile Include="Physics\transform.cpp">
+      <Filter>ソース ファイル\Physics</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -251,19 +260,10 @@
     <ClInclude Include="gameObject.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="Actor\ballCollider.h">
-      <Filter>ヘッダー ファイル\Actor</Filter>
-    </ClInclude>
     <ClInclude Include="Actor\ballObject.h">
       <Filter>ヘッダー ファイル\Actor</Filter>
     </ClInclude>
-    <ClInclude Include="Actor\boxCollider.h">
-      <Filter>ヘッダー ファイル\Actor</Filter>
-    </ClInclude>
     <ClInclude Include="Actor\brock.h">
-      <Filter>ヘッダー ファイル\Actor</Filter>
-    </ClInclude>
-    <ClInclude Include="Actor\collider.h">
       <Filter>ヘッダー ファイル\Actor</Filter>
     </ClInclude>
     <ClInclude Include="Actor\gameObjectMediator.h">
@@ -331,6 +331,21 @@
     </ClInclude>
     <ClInclude Include="UI\baseUI.h">
       <Filter>ヘッダー ファイル\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="Physics\ballCollider.h">
+      <Filter>ヘッダー ファイル\Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="Physics\boxCollider.h">
+      <Filter>ヘッダー ファイル\Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="Physics\collider.h">
+      <Filter>ヘッダー ファイル\Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="Physics\transform.h">
+      <Filter>ヘッダー ファイル\Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="MyInclude\transform.h">
+      <Filter>ヘッダー ファイル\MyInclude</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

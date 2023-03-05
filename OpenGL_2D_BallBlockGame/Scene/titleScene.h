@@ -21,4 +21,9 @@ class TitleScene :
         unsigned int level;
 };
 
+inline unsigned int TitleScene::GetLevel()
+{
+    return this->level;
+}
+
 #endif // !TITLE_SCENE_H

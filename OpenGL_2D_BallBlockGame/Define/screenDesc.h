@@ -1,7 +1,7 @@
 #ifndef SCREEN_DESC_H
 #define SCREEN_DESC_H
 
-static class ScreenDesc
+class ScreenDesc
 {
 	public:
 		static unsigned int WIDTH;

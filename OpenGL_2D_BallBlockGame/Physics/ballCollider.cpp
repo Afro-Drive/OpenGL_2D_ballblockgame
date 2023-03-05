@@ -9,12 +9,8 @@
 #include"ballObject.h"
 #include"brock.h"
 #include"gameObjectMediator.h"
+#include"transform.h"
 
-BallCollider2D::BallCollider2D()
-    :Collider2D(),
-	 radius(0.0f)
-{
-}
 
 BallCollider2D::BallCollider2D(glm::vec2 pos, GameObject& target, float radius, GameObjectMediator& mediator)
     :Collider2D(pos, glm::vec2(0.0f), target, mediator),
@@ -25,12 +21,12 @@ BallCollider2D::BallCollider2D(glm::vec2 pos, GameObject& target, float radius, 
 Collision BallCollider2D::CheckCollision(BallCollider2D& one, BoxCollider2D& two)
 {
 	// get center point circle first
-	glm::vec2 center(one.Position + one.Radius());
+	glm::vec2 center(one.transform->Position + one.Radius());
 	// calculate AABB info (center, half-extents)
-	glm::vec2 aabb_half_extents(two.Size.x / 2.0f, two.Size.y / 2.0f);
+	glm::vec2 aabb_half_extents(two.transform->Size.x / 2.0f, two.transform->Size.y / 2.0f);
 	glm::vec2 aabb_center(
-		two.Position.x + aabb_half_extents.x,
-		two.Position.y + aabb_half_extents.y);
+		two.transform->Position.x + aabb_half_extents.x,
+		two.transform->Position.y + aabb_half_extents.y);
 
 	// get difference vector between both centers
 	glm::vec2 difference = center - aabb_center;
@@ -99,16 +95,16 @@ void BallCollider2D::CalcPhysicsByPlayer(Player& other)
 		return;
 
 	// check where it hit the board, and change velocity based on where it hit the board
-	float centerBoard = other.Position.x + other.Size.x / 2.0f;
-	float distance = (this->Position.x + this->radius) - centerBoard;
-	float percentage = distance / (other.Size.x / 2.0f);
+	float centerBoard = other.transform->Position.x + other.transform->Size.x / 2.0f;
+	float distance = (this->transform->Position.x + this->radius) - centerBoard;
+	float percentage = distance / (other.transform->Size.x / 2.0f);
 
 	// then move accordingly
 	float strength = 2.0f;
-	glm::vec2 oldVelocity = target->Velocity;
-	target->Velocity.x = target->INITIAL_BALL_VELOCITY.x * percentage * strength;
-	target->Velocity = glm::normalize(target->Velocity) * glm::length(oldVelocity);
-	target->Velocity.y = -1.0f * abs(target->Velocity.y);
+	glm::vec2 oldVelocity = target->transform->Velocity;
+	target->transform->Velocity.x = target->INITIAL_BALL_VELOCITY.x * percentage * strength;
+	target->transform->Velocity = glm::normalize(target->transform->Velocity) * glm::length(oldVelocity);
+	target->transform->Velocity.y = -1.0f * abs(target->transform->Velocity.y);
 
 	// if Sticky powerup is activated, also stick ball to paddle once new velocity vectors were calculated
 	target->Stuck = (target->Sticky);
@@ -129,32 +125,32 @@ void BallCollider2D::CalcPhysicsByBrock(Brock& other, Collision preResult)
 		// horizontal collision
 	case LEFT:
 	case RIGHT:
-		target->Velocity.x = -target->Velocity.x; // reverse horizontal velocity
+		target->transform->Velocity.x = -target->transform->Velocity.x; // reverse horizontal velocity
 		// relocate
 		penetration = this->radius - std::abs(diff_vector.x);
 		dir == LEFT ?
-			target->Position.x += penetration // move ball to right
+			target->transform->Position.x += penetration // move ball to right
 			:
-			target->Position.x -= penetration; // move ball to left
+			target->transform->Position.x -= penetration; // move ball to left
 		break;
 
 		// vertical collision
 	case UP:
 	case DOWN:
-		target->Velocity.y = -target->Velocity.y; // reverse vertical velocity
+		target->transform->Velocity.y = -target->transform->Velocity.y; // reverse vertical velocity
 		// relocate
 		penetration = this->radius - std::abs(diff_vector.y);
 		dir == UP ?
-			target->Position.y -= penetration // move ball back up
+			target->transform->Position.y -= penetration // move ball back up
 			:
-			target->Position.y += penetration; // move ball back down
+			target->transform->Position.y += penetration; // move ball back down
 		break;
 	}
 }
 
 Collision BallCollider2D::DoCollision(Collider2D& other)
 {
-	return other.GetCollider()->DoCollision(*this);
+	return other.transform->GetCollider()->DoCollision(*this);
 }
 
 Direction BallCollider2D::VectorDirection(glm::vec2 target)

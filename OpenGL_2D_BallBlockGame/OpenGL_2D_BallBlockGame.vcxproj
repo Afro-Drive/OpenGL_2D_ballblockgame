@@ -137,11 +137,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="Actor\ballCollider.h" />
     <ClInclude Include="Actor\ballObject.h" />
-    <ClInclude Include="Actor\boxCollider.h" />
     <ClInclude Include="Actor\brock.h" />
-    <ClInclude Include="Actor\collider.h" />
     <ClInclude Include="Actor\gameObjectMediator.h" />
     <ClInclude Include="Actor\Level\gameLevel.h" />
     <ClInclude Include="Actor\player.h" />
@@ -179,6 +176,11 @@
     <ClInclude Include="MyInclude\spriteRenderer.h" />
     <ClInclude Include="MyInclude\textRenderer.h" />
     <ClInclude Include="MyInclude\texture.h" />
+    <ClInclude Include="MyInclude\transform.h" />
+    <ClInclude Include="Physics\ballCollider.h" />
+    <ClInclude Include="Physics\boxCollider.h" />
+    <ClInclude Include="Physics\collider.h" />
+    <ClInclude Include="Physics\transform.h" />
     <ClInclude Include="Scene\abstractScene.h" />
     <ClInclude Include="Scene\endScene.h" />
     <ClInclude Include="Scene\gameMainScene.h" />
@@ -191,11 +193,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\opengl_glfw_tutorial\downloads\glad\src\gl.c" />
-    <ClCompile Include="Actor\ballCollider.cpp" />
     <ClCompile Include="Actor\ballObject.cpp" />
-    <ClCompile Include="Actor\boxCollider.cpp" />
     <ClCompile Include="Actor\brock.cpp" />
-    <ClCompile Include="Actor\collider.cpp" />
     <ClCompile Include="Actor\gameObjectMediator.cpp" />
     <ClCompile Include="Actor\Level\gameLevel.cpp" />
     <ClCompile Include="Actor\player.cpp" />
@@ -211,6 +210,10 @@
     <ClCompile Include="Effect\texture.cpp" />
     <ClCompile Include="game.cpp" />
     <ClCompile Include="gameObject.cpp" />
+    <ClCompile Include="Physics\ballCollider.cpp" />
+    <ClCompile Include="Physics\boxCollider.cpp" />
+    <ClCompile Include="Physics\collider.cpp" />
+    <ClCompile Include="Physics\transform.cpp" />
     <ClCompile Include="program.cpp" />
     <ClCompile Include="Scene\abstractScene.cpp" />
     <ClCompile Include="Scene\endScene.cpp" />

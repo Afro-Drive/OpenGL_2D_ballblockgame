@@ -17,6 +17,7 @@
 #include<player.h>
 #include<ballCollider.h>
 #include<boxCollider.h>
+#include<transform.h>
 
 
 // Initial size of the player paddle
@@ -33,7 +34,7 @@ ParticleGenerator* Particles;
 
 
 GameMainScene::GameMainScene(unsigned int width, unsigned int height, SceneMediator* sceneMediator)
-	:AbstractScene(width, height, sceneMediator)
+	:AbstractScene(width, height, sceneMediator), Ball(nullptr), isLoadedStage(false), level(0), lives(0), player(nullptr)
 {
 	gameObjectMediator = new GameObjectMediator(
 		*(this->sceneMediator->getSoundEngine()),
@@ -76,14 +77,14 @@ void GameMainScene::Init()
 		this->height - PLAYER_SIZE.y);
 	player = new Player(playerPos, PLAYER_SIZE, ResourceManager::GetTexture("paddle"), *gameObjectMediator);
 	BoxCollider2D* playerCollider = new BoxCollider2D(playerPos, PLAYER_SIZE, *player, *(this->gameObjectMediator));
-	player->SetCollider(*playerCollider);
+	player->transform->SetCollider(*playerCollider);
 	
 	// Ball configure
 	glm::vec2 modifyPos = glm::vec2(PLAYER_SIZE.x / 2.0f - BALL_RADIUS, -BALL_RADIUS * 2.0f);
 	glm::vec2 ballPos = playerPos + modifyPos;
 	Ball = new BallObject(ballPos, BALL_RADIUS, INITIAL_BALL_VELOCITY, ResourceManager::GetTexture("ball"), nullptr, *gameObjectMediator);
 	BallCollider2D* ballCollider = new BallCollider2D(ballPos, *Ball, BALL_RADIUS, *(this->gameObjectMediator));
-	Ball->SetCollider(*ballCollider);
+	Ball->transform->SetCollider(*ballCollider);
 
 	player->SetTargetBall(Ball);
 }
@@ -98,7 +99,7 @@ void GameMainScene::Update(float dt)
 	// update PowerUps
 	this->stageVector[level]->Update(dt);
 	
-	if (Ball->Position.y >= this->height) // if ball reach bottom edge?
+	if (Ball->transform->Position.y >= this->height) // if ball reach bottom edge?
 	{
 		--this->lives;
 		// did the player lose all his lives?
@@ -142,7 +143,7 @@ void GameMainScene::Render(SpriteRenderer* renderer)
 	// end rendering to postprocessing framebuffer
 	effects->EndRender();
 	// render postprocessing quad
-	effects->Render(glfwGetTime());
+	effects->Render((float)glfwGetTime());
 
 	std::stringstream ss;
 	ss << this->lives;
@@ -327,9 +328,9 @@ void GameMainScene::ProcessInput(float dt)
 void GameMainScene::ResetPlayer()
 {
 	// reset player/ball stats
-	player->Size = PLAYER_SIZE;
-	player->Position = glm::vec2(this->width / 2.0f - PLAYER_SIZE.x / 2.0f, this->height - PLAYER_SIZE.y);
-	Ball->Reset(player->Position + glm::vec2(PLAYER_SIZE.x / 2.0f - BALL_RADIUS, -(BALL_RADIUS * 2.0f)), INITIAL_BALL_VELOCITY);
+	player->transform->Size = PLAYER_SIZE;
+	player->transform->Position = glm::vec2(this->width / 2.0f - PLAYER_SIZE.x / 2.0f, this->height - PLAYER_SIZE.y);
+	Ball->Reset(player->transform->Position + glm::vec2(PLAYER_SIZE.x / 2.0f - BALL_RADIUS, -(BALL_RADIUS * 2.0f)), INITIAL_BALL_VELOCITY);
 }
 
 void GameMainScene::ResetLevel()

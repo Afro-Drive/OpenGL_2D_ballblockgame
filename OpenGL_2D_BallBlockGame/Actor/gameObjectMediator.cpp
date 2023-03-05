@@ -9,8 +9,8 @@
 
 GameObjectMediator::GameObjectMediator(ISoundEngine& soundEngine, PostProcessor& effects, GameMainScene& gameMainScene)
 	:soundEngine(&soundEngine), effects(&effects), gameMainScene(&gameMainScene)
-{
-}
+{ }
+
 GameObject* GameObjectMediator::SurveyActiveGameObject(GameTag order)
 {
 	switch (order)

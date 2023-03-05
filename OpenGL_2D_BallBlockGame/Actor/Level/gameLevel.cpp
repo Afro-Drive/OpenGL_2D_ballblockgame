@@ -12,10 +12,11 @@
 #include<ballObject.h>
 #include<boxCollider.h>
 #include<player.h>
+#include<transform.h>
 
 
 GameLevel::GameLevel(GameObjectMediator& mediator)
-	:mediator(&mediator)
+	:mediator(&mediator), shakeTime(0.0f)
 {
 	this->powerUpManager = new PowerUpManager(*(this->mediator));
 	this->Bricks.clear();
@@ -84,14 +85,14 @@ void GameLevel::JudgeCollision()
 		if (box->Destroyed())
 			continue;
 
-		Collision onCollision = box->GetCollider()->DoCollision(*(ballObj->GetCollider()));
+		Collision onCollision = box->transform->GetCollider()->DoCollision(*(ballObj->transform->GetCollider()));
 		if (std::get<0>(onCollision))
 		{
 			if (!box->IsSolid())
 			{
 				box->SetDestroyed(true);
 				box->DoSpecialOnCollision();
-				this->powerUpManager->Spawn(box->Position);
+				this->powerUpManager->Spawn(box->transform->Position);
 			}
 			else
 			{
@@ -106,7 +107,7 @@ void GameLevel::JudgeCollision()
 	if (!static_cast<BallObject*>(ballObj)->Stuck)
 	{
 		GameObject* player = static_cast<Player*>(this->mediator->SurveyActiveGameObject(GameTag::PLAYER));
-		player->GetCollider()->DoCollision(*(ballObj->GetCollider()));
+		player->transform->GetCollider()->DoCollision(*(ballObj->transform->GetCollider()));
 	}
 }
 
@@ -127,13 +128,11 @@ void GameLevel::Update(float dt)
 
 void GameLevel::DesignData(unsigned int levelWidth, unsigned int levelHeight)
 {
-	shakeTime = 0.0f;
-
 	// calculate dimensions
-	unsigned int height = tileData.size();
-	unsigned int width = tileData[0].size();
+	unsigned int height = (unsigned int)tileData.size();
+	unsigned int width = (unsigned int)tileData[0].size();
 	float unit_width = levelWidth / static_cast<float>(width);
-	float unit_height = levelHeight / height;
+	float unit_height = (float)levelHeight / height;
 
 	// initialize level tiles based on tileData
 	for (unsigned int y = 0; y < height; ++y)
@@ -156,7 +155,7 @@ void GameLevel::DesignData(unsigned int levelWidth, unsigned int levelHeight)
 					glm::vec2(0.0f, 0.0f)
 				);
 				collider = new BoxCollider2D(pos, size, *brockObj, *(this->mediator));
-				brockObj->SetCollider(*collider);
+				brockObj->transform->SetCollider(*collider);
 				brockObj->SetIsSolid(true);
 				this->Bricks.push_back(brockObj);
 			}
@@ -184,7 +183,7 @@ void GameLevel::DesignData(unsigned int levelWidth, unsigned int levelHeight)
 					color,
 					glm::vec2(0.0f, 0.0f));
 				collider = new BoxCollider2D(pos, size, *brockObj, *(this->mediator));
-				brockObj->SetCollider(*collider);
+				brockObj->transform->SetCollider(*collider);
 				this->Bricks.push_back(brockObj);
 			}
 		}
