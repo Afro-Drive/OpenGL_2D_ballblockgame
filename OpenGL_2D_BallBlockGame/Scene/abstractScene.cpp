@@ -1,9 +1,15 @@
 #include "abstractScene.h"
 
 #include<resourceManager.h>
+#include<gameObjectMediator.h>
+#include<input.h>
+#include"sceneMediator.h"
+#include<textRenderer.h>
+#include<postProcessor.h>
 
-AbstractScene::AbstractScene(unsigned width, unsigned int height, ISoundEngine* soundEngine, SceneMediator* sceneMediator)
-	:width(width), height(height), soundEngine(soundEngine), sceneMediator(sceneMediator)
+
+AbstractScene::AbstractScene(unsigned width, unsigned int height, SceneMediator* sceneMediator)
+	:width(width), height(height), sceneMediator(sceneMediator)
 {
 	// text-UI
 	text = new TextRenderer(this->width, this->height);
@@ -16,15 +22,4 @@ AbstractScene::~AbstractScene()
 {
 	delete text;
 	delete effects;
-	soundEngine->drop();
-}
-
-bool AbstractScene::GetIsEnd()
-{
-	return isEnd;
-}
-
-SceneName AbstractScene::GetNextScene()
-{
-	return nextScene;
 }

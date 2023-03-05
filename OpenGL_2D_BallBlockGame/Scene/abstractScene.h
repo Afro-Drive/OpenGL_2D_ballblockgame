@@ -8,11 +8,11 @@
 using namespace irrklang;
 #pragma comment(lib, "irrKlang.lib") // link with irrKlang.dll
 
-#include<input.h>
-#include<particleGenerator.h>
-#include<postProcessor.h>
-#include<textRenderer.h>
-#include"SceneMediator.h"
+// forward declare
+class SceneMediator;
+class SpriteRenderer;
+class TextRenderer;
+class PostProcessor;
 
 enum class SceneName
 {
@@ -25,7 +25,7 @@ class AbstractScene :
     public IScene
 {
     public:
-        AbstractScene(unsigned width, unsigned int height, ISoundEngine* soundEngine, SceneMediator* sceneMediator);
+        AbstractScene(unsigned width, unsigned int height, SceneMediator* sceneMediator);
         ~AbstractScene();
         // IScene implements(but not difined in this class)
         virtual void Init() override = 0;
@@ -35,15 +35,30 @@ class AbstractScene :
 
         bool GetIsEnd();
         SceneName GetNextScene();
+        glm::uvec2 GetSceneSize();
 
     protected:
         unsigned int width, height;
         bool isEnd;
         SceneName nextScene;
-        ISoundEngine* soundEngine;
         TextRenderer* text;
         PostProcessor* effects;
         SceneMediator* sceneMediator;
 };
+
+inline bool AbstractScene::GetIsEnd()
+{
+    return isEnd;
+}
+
+inline SceneName AbstractScene::GetNextScene()
+{
+    return nextScene;
+}
+
+inline glm::uvec2 AbstractScene::GetSceneSize()
+{
+    return glm::uvec2(this->width, this->height);
+}
 
 #endif // !ABSTRACT_SCENE_H

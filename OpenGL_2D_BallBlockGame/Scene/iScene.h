@@ -2,7 +2,7 @@
 #define I_SCENE_H
 
 
-#include<spriteRendererh.h>
+#include<spriteRenderer.h>
 
 class IScene
 {

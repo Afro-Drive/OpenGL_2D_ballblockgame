@@ -10,6 +10,7 @@
 #include"game.h"
 #include<input.h>
 #include"screenDesc.h"
+#include<resourceManager.h>
 
 
 Game BrockBallGame = Game();

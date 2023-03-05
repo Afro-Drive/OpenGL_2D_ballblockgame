@@ -10,26 +10,6 @@
 #include"ballObject.h"
 #include"Actor/powerUp.h"
 
-/// <summary>
-/// Represents the current state of the game
-/// </summary>
-//enum GameState {
-//	GAME_ACTIVE,
-//	GAME_MENU,
-//	GAME_WIN
-//};
-
-/// <summary>
-/// Type for advanced-collision function
-/// </summary>
-//enum Direction{
-//	UP,
-//	RIGHT,
-//	DOWN,
-//	LEFT
-//};
-//typedef std::tuple<bool, Direction, glm::vec2> Collision;
-
 
 /// <summary>
 /// Game holds all game-related state and functionally.

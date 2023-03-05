@@ -3,10 +3,11 @@
 
 
 #include<map>
-
-#include<spriteRendererh.h>
 #include"abstractScene.h"
-#include<textRenderer.h>
+
+// forward declare
+class TextRenderer;
+class SpriteRenderer;
 
 
 class SceneManager
@@ -73,8 +74,14 @@ class SceneManager
 		~SceneManager();
 		static SceneManager* Instance;
 		AbstractScene* currentScene;
-		SceneName prevSceneName, currentSceneName;
+		SceneName prevSceneName;
+		SceneName currentSceneName;
 		std::map<SceneName, AbstractScene*> sceneMap;
 };
+
+inline AbstractScene* SceneManager::GetCurrentScene()
+{
+	return currentScene;
+}
 
 #endif // !SCENE_MANAGER_H

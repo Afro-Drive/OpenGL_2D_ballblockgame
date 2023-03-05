@@ -3,6 +3,16 @@
 #include"gameMainScene.h"
 #include"titleScene.h"
 #include"sceneManager.h"
+#include"abstractScene.h"
+
+SceneMediator::SceneMediator(ISoundEngine& soundEngine)
+    :soundEngine(&soundEngine)
+{
+}
+
+SceneMediator::~SceneMediator()
+{
+}
 
 void SceneMediator::Share()
 {
@@ -11,10 +21,10 @@ void SceneMediator::Share()
     if (!gameMainScene->isLoadedStage())
         gameMainScene->LoadStageData();
 
-    this->stages = gameMainScene->getStageVector();
+    this->stages = gameMainScene->GetStageVector();
 }
 
-std::vector<GameLevel> SceneMediator::ShareStages()
+std::vector<GameLevel*> SceneMediator::ShareStages()
 {
     if (this->stages.empty())
         this->Share(); // load stage vector data from GameMainScene
@@ -26,4 +36,9 @@ unsigned int SceneMediator::ShareLevel()
 {
     TitleScene* titleScene = static_cast<TitleScene*>(SceneManager::GetInstance()->GetSceneMap()[SceneName::TITLE]);
     return titleScene->GetLevel();
+}
+
+ISoundEngine* SceneMediator::getSoundEngine()
+{
+    return this->soundEngine;
 }
