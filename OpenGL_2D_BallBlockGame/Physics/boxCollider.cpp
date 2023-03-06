@@ -8,12 +8,8 @@
 #include"ballObject.h"
 #include"player.h"
 #include"brock.h"
+#include"transform.h"
 
-
-BoxCollider2D::BoxCollider2D()
-    :Collider2D()
-{
-}
 
 BoxCollider2D::BoxCollider2D(glm::vec2 pos, glm::vec2 size, GameObject& target, GameObjectMediator& mediator, GameTag myTag)
     :Collider2D(pos, size, target, mediator, myTag)
@@ -43,11 +39,11 @@ Collision BoxCollider2D::DoCollision(Collider2D& other)
 Collision BoxCollider2D::CheckCollision(BoxCollider2D& other)
 {
 	// collision x-axis?
-	bool collisionX = this->Position.x + this->Size.x >= other.Position.x
-		&& other.Position.x + other.Size.x >= this->Position.x;
+	bool collisionX = this->transform->Position.x + this->transform->Size.x >= other.transform->Position.x
+		&& other.transform->Position.x + other.transform->Size.x >= this->transform->Position.x;
 	// collision y-axis?
-	bool collisionY = this->Position.y + this->Size.y >= other.Position.y
-		&& other.Position.y + other.Size.y >= this->Position.y;
+	bool collisionY = this->transform->Position.y + this->transform->Size.y >= other.transform->Position.y
+		&& other.transform->Position.y + other.transform->Size.y >= this->transform->Position.y;
 	bool isCollision = collisionX && collisionY;
 
 	// In this game, when BoxCollider & BoxCollider collide, returns no direction, vector.

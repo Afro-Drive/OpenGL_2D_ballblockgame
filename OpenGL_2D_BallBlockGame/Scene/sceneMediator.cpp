@@ -18,7 +18,7 @@ void SceneMediator::Share()
 {
     GameMainScene* gameMainScene = static_cast<GameMainScene*>(
         SceneManager::GetInstance()->GetSceneMap()[SceneName::GAME_MAIN]);
-    if (!gameMainScene->isLoadedStage())
+    if (!gameMainScene->IsLoadedStage())
         gameMainScene->LoadStageData();
 
     this->stages = gameMainScene->GetStageVector();
@@ -28,6 +28,13 @@ std::vector<GameLevel*> SceneMediator::ShareStages()
 {
     if (this->stages.empty())
         this->Share(); // load stage vector data from GameMainScene
+    else
+    {
+        // reload only one stage played previously
+        GameMainScene* gameMainScene = static_cast<GameMainScene*>(
+            SceneManager::GetInstance()->GetSceneMap()[SceneName::GAME_MAIN]);
+        gameMainScene->ResetLevel();
+    }
 
     return stages;
 }
@@ -38,7 +45,16 @@ unsigned int SceneMediator::ShareLevel()
     return titleScene->GetLevel();
 }
 
-ISoundEngine* SceneMediator::getSoundEngine()
+unsigned int SceneMediator::ShareLives()
 {
-    return this->soundEngine;
+    GameMainScene* gameMainScene = static_cast<GameMainScene*>(
+        SceneManager::GetInstance()->GetSceneMap()[SceneName::GAME_MAIN]);
+    return gameMainScene->GetLives();
+}
+
+unsigned int SceneMediator::ShareScore()
+{
+    GameMainScene* gameMainScene = static_cast<GameMainScene*>(
+        SceneManager::GetInstance()->GetSceneMap()[SceneName::GAME_MAIN]);
+    return stages[this->ShareLevel()]->GetScore();
 }

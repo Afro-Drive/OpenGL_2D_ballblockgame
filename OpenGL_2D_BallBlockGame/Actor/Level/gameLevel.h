@@ -10,6 +10,7 @@
 class GameObjectMediator;
 class PowerUpManager;
 class SpriteRenderer;
+class UIMediator;
 
 
 enum class BrockColor
@@ -24,24 +25,33 @@ class GameLevel
 		// level state
 		std::vector<Brock*> Bricks;
 		// constructor
-		GameLevel() { };
-		GameLevel(GameObjectMediator& mediator);
+		GameLevel(GameObjectMediator& gameObjectMediator, UIMediator& uiMediator);
 		~GameLevel();
 		// loads level from file
-		void Load(const char* file, unsigned int levelWidth, unsigned int levelHeihgt);
+		void Load(const char* file, unsigned int levelWidth, unsigned int levelHeihgt, bool firstLoad);
 		// render level
 		void Draw(SpriteRenderer& renderer);
 		void Update(float dt);
 		// check if the level is completed (all non-solid tiles are destroyed)
 		bool IsCompleted();
 		void JudgeCollision();
+		unsigned int GetScore();
+
 	private:
-		GameObjectMediator* mediator;        
+		GameObjectMediator* gameObjectMediator;    
+		UIMediator* uiMediator;
 		PowerUpManager* powerUpManager;
 		float shakeTime;
+		unsigned int score;
+		unsigned int bonusScore;
+		std::vector<std::vector<unsigned int>> tileData;
 
 		// initialize level from tile data
-		void init(std::vector<std::vector<unsigned int>> tileData,unsigned int levelWidth, unsigned int levelHeight);
+		void DesignData(unsigned int levelWidth, unsigned int levelHeight);
 };
 
+inline unsigned int GameLevel::GetScore()
+{
+	return this->score;
+}
 #endif

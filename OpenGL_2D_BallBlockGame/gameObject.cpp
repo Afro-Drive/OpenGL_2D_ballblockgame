@@ -2,18 +2,33 @@
 
 #include<gameObjectMediator.h>
 #include<spriteRenderer.h>
-#include"Actor/collider.h"
+#include<collider.h>
+#include<transform.h>
 
-
-GameObject::GameObject()
-	: Position(0.0f, 0.0f), Size(1.0f, 1.0f), Velocity(0.0f), Color(1.0f), Rotation(0.0f), Sprite(), collider(), mediator(), myTag(GameTag::NONE), IsSolid(false), Destroyed(false) { }
 
 GameObject::GameObject(glm::vec2 pos, glm::vec2 size, Texture2D sprite, Collider2D* collider, GameObjectMediator& mediator, GameTag myTag, glm::vec3 color, glm::vec2 velocity)
-	: Position(pos), Size(size), Velocity(velocity), Color(color), Rotation(0.0f), Sprite(sprite), collider(collider), mediator(&mediator), myTag(myTag), IsSolid(false), Destroyed(false) { }
+	: Sprite(sprite), mediator(&mediator), myTag(myTag)
+{
+	transform = new Transform(pos, size, collider, velocity, 0.0f, color);
+}
+
+GameObject::GameObject(Transform& transform, Texture2D sprite, GameObjectMediator& mediator, GameTag myTag)
+	:transform(&transform), Sprite(sprite), mediator(&mediator), myTag(myTag)
+{ }
+
+GameObject::~GameObject()
+{
+	delete this->transform;
+}
 
 void GameObject::Draw(SpriteRenderer& renderer)
 {
-	renderer.DrawSprite(this->Sprite, this->Position, this->Size, this->Rotation, this->Color);
+	renderer.DrawSprite(
+		this->Sprite,
+		this->transform->Position,
+		this->transform->Size,
+		this->transform->Rotation,
+		this->transform->Color);
 }
 
 void GameObject::Update(float dt)

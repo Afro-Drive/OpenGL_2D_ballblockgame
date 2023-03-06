@@ -17,7 +17,6 @@ class BoxCollider2D :
     public Collider2D
 {
     public:
-        BoxCollider2D();
         BoxCollider2D(glm::vec2 pos, glm::vec2 size, GameObject& target, GameObjectMediator& mediator, GameTag myTag = GameTag::NONE);
         Collision DoCollision(Collider2D& other) override;
         Collision DoCollision(BallCollider2D& other) override;

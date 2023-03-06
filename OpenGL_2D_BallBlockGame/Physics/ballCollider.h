@@ -18,7 +18,6 @@ class BallCollider2D :
     public Collider2D
 {
     public:
-        BallCollider2D();
         BallCollider2D(glm::vec2 pos, GameObject& target, float radius, GameObjectMediator& mediator);
 
         float Radius();

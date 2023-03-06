@@ -9,6 +9,7 @@
 #include<ballObject.h>
 #include<collider.h>
 #include<boxCollider.h>
+#include<transform.h>
 
 
 PowerUpManager::PowerUpManager(GameObjectMediator& mediator)
@@ -19,9 +20,7 @@ PowerUpManager::PowerUpManager(GameObjectMediator& mediator)
 PowerUpManager::~PowerUpManager()
 {
 	for (PowerUp* powerUp : this->powerUps)
-	{
 		delete powerUp;
-	}
 	powerUps.clear();
 }
 
@@ -34,14 +33,14 @@ void PowerUpManager::Update(float dt)
 	for (PowerUp* powerUp : this->powerUps)
     {
 		// update for no destroyed object
-		if (!powerUp->Destroyed)
+		if (!powerUp->Destroyed())
 		{
 			powerUp->Update(dt);
 
-			if (powerUp->Position.y >= this->mediator->GetScreenSize().y)
-				powerUp->Destroyed = true;
+			if (powerUp->transform->Position.y >= this->mediator->GetScreenSize().y)
+				powerUp->SetDestroyed(true);
 
-			Collision onCollision = powerUp->GetCollider()->DoCollision(*(player->GetCollider()));
+			Collision onCollision = powerUp->transform->GetCollider()->DoCollision(*(player->transform->GetCollider()));
 			if (std::get<0>(onCollision))
 				// collided with player, now activate powerup
 				ActivatePowerUp(*powerUp, *Ball, *(static_cast<Player*>(player)), *effects);
@@ -59,30 +58,31 @@ void PowerUpManager::Update(float dt)
 		std::remove_if(
 			this->powerUps.begin(),
 			this->powerUps.end(),
-			[](const PowerUp* powerUp) { return powerUp->Destroyed && !powerUp->Activated; }),
+			[](const PowerUp* powerUp) { return powerUp->Destroyed() && !powerUp->Activated; }),
 		this->powerUps.end());
 }
 
 void PowerUpManager::ActivatePowerUp(PowerUp& powerUp, BallObject& ball, Player& player, PostProcessor& effects)
 {
-	powerUp.Destroyed = true;
+	powerUp.SetDestroyed(true);
 	powerUp.Activated = true;
 	
 	switch (powerUp.Type)
 	{
 	case PowerUpType::SPEED:
-		ball.Velocity *= 1.2;
+		ball.transform->Velocity *= 1.2;
 		break;
 	case PowerUpType::STICKY:
 		ball.Sticky = true;
-		player.Color = glm::vec3(1.0f, 0.5f, 1.0f);
+		player.transform->Color = glm::vec3(1.0f, 0.5f, 1.0f);
 		break;
 	case PowerUpType::PASS_THROUGH:
 		ball.PassThrough = true;
-		player.Color = glm::vec3(1.0f, 0.5f, 0.5f);
+		player.transform->Color = glm::vec3(1.0f, 0.5f, 0.5f);
 		break;
 	case PowerUpType::PAD_SIZE_INCREASE:
-		player.Size.x += 50;
+		player.transform->Size.x += 50;
+		player.transform->GetCollider()->transform->Size.x = player.transform->Size.x;
 		break;
 	case PowerUpType::CONFUSE:
 		if (!effects.Confuse)
@@ -110,7 +110,7 @@ void PowerUpManager::InActivatePowerUp(PowerUp& powerUp, BallObject& ball, Playe
 		{
 			// only reset if no other PowerUp of tyep sticky is active
 			ball.Sticky = false;
-			player.Color = glm::vec3(1.0f);
+			player.transform->Color = glm::vec3(1.0f);
 		}
 		break;
 	case PowerUpType::PASS_THROUGH:
@@ -118,7 +118,7 @@ void PowerUpManager::InActivatePowerUp(PowerUp& powerUp, BallObject& ball, Playe
 		{
 			// only reset if no other PowerUp of tyep pass-through is active
 			ball.PassThrough = false;
-			player.Color = glm::vec3(1.0f);
+			player.transform->Color = glm::vec3(1.0f);
 		}
 		break;
 	case PowerUpType::CONFUSE:
@@ -156,44 +156,44 @@ void PowerUpManager::Spawn(glm::vec2 spawnPos)
 	if (ShouldSpawn(75)) // 1 in 75 chance
 	{
 		pu = new PowerUp(PowerUpType::SPEED, glm::vec3(0.5f, 0.5f, 1.0f), 0.0f, spawnPos, ResourceManager::GetTexture("powerup_speed"), *(this->mediator), nullptr);
-		col = new BoxCollider2D(spawnPos, pu->Size, *pu, *(this->mediator));
-		pu->SetCollider(*col);
+		col = new BoxCollider2D(spawnPos, pu->transform->Size, *pu, *(this->mediator));
+		pu->transform->SetCollider(*col);
 		this->powerUps.push_back(pu);
 	}
 	if (ShouldSpawn(75))
 	{
 		pu = new PowerUp(PowerUpType::STICKY, glm::vec3(1.0f, 0.5f, 1.0f), 20.0f, spawnPos, ResourceManager::GetTexture("powerup_sticky"), *(this->mediator), nullptr);
-		col = new BoxCollider2D(spawnPos, pu->Size, *pu, *(this->mediator));
-		pu->SetCollider(*col);
+		col = new BoxCollider2D(spawnPos, pu->transform->Size, *pu, *(this->mediator));
+		pu->transform->SetCollider(*col);
 		this->powerUps.push_back(pu);
 	}
 	if (ShouldSpawn(75))
 	{
 		pu = new PowerUp(PowerUpType::PASS_THROUGH, glm::vec3(0.5f, 1.0f, 0.5f), 10.0f, spawnPos, ResourceManager::GetTexture("powerup_passthrough"), *(this->mediator), nullptr);
-		col = new BoxCollider2D(spawnPos, pu->Size, *pu, *(this->mediator));
-		pu->SetCollider(*col);
+		col = new BoxCollider2D(spawnPos, pu->transform->Size, *pu, *(this->mediator));
+		pu->transform->SetCollider(*col);
 		this->powerUps.push_back(pu);
 	}
 	if (ShouldSpawn(75))
 	{
 		pu = new PowerUp(PowerUpType::PAD_SIZE_INCREASE, glm::vec3(1.0f, 0.6f, 0.4f), 0.0f, spawnPos, ResourceManager::GetTexture("powerup_increase"), *(this->mediator), nullptr);
-		col = new BoxCollider2D(spawnPos, pu->Size, *pu, *(this->mediator));
-		pu->SetCollider(*col);
+		col = new BoxCollider2D(spawnPos, pu->transform->Size, *pu, *(this->mediator));
+		pu->transform->SetCollider(*col);
 		this->powerUps.push_back(pu);
 	}
 
 	if (ShouldSpawn(15)) // negative powerups should spawn more often
 	{
 		pu = new PowerUp(PowerUpType::CONFUSE, glm::vec3(1.0f, 0.3f, 0.3f), 15.0f, spawnPos, ResourceManager::GetTexture("powerup_confuse"), *(this->mediator), nullptr);
-		col = new BoxCollider2D(spawnPos, pu->Size, *pu, *(this->mediator));
-		pu->SetCollider(*col);
+		col = new BoxCollider2D(spawnPos, pu->transform->Size, *pu, *(this->mediator));
+		pu->transform->SetCollider(*col);
 		this->powerUps.push_back(pu);
 	}
 	if (ShouldSpawn(15))
 	{
 		pu = new PowerUp(PowerUpType::CHAOS, glm::vec3(0.9f, 0.5f, 0.25f), 15.0f, spawnPos, ResourceManager::GetTexture("powerup_chaos"), *(this->mediator), nullptr);
-		col = new BoxCollider2D(spawnPos, pu->Size, *pu, *(this->mediator));
-		pu->SetCollider(*col);
+		col = new BoxCollider2D(spawnPos, pu->transform->Size, *pu, *(this->mediator));
+		pu->transform->SetCollider(*col);
 		this->powerUps.push_back(pu);
 	}
 }
@@ -201,7 +201,23 @@ void PowerUpManager::Spawn(glm::vec2 spawnPos)
 void PowerUpManager::Draw(SpriteRenderer& renderer)
 {
 	for (PowerUp* powerUp : this->powerUps)
-		if (!powerUp->Destroyed)
+		if (!powerUp->Destroyed())
 			powerUp->Draw(renderer);
+}
+
+void PowerUpManager::Init()
+{
+	Player* player = static_cast<Player*>(this->mediator->SurveyActiveGameObject(GameTag::PLAYER));
+	BallObject* ball = static_cast<BallObject*>(this->mediator->SurveyActiveGameObject(GameTag::BALL));
+
+	for (PowerUp* powerUp : this->powerUps)
+	{
+		if (!powerUp->Destroyed())
+			powerUp->SetDestroyed(true);
+		if (powerUp->Activated)
+			this->InActivatePowerUp(*powerUp, *ball, *player, *(this->mediator->GetEffects()));
+		delete powerUp;
+	}
+	this->powerUps.clear();
 }
 

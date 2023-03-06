@@ -11,7 +11,6 @@ using namespace irrklang;
 class SceneMediator
 {
     public:
-        SceneMediator() { };
         SceneMediator(ISoundEngine& soundEngine);
         ~SceneMediator();
 
@@ -22,11 +21,18 @@ class SceneMediator
         /// <returns></returns>
         std::vector<GameLevel*> ShareStages();
         unsigned int ShareLevel();
+        unsigned int ShareLives();
+        unsigned int ShareScore();
         ISoundEngine* getSoundEngine();
 
     private:
         std::vector<GameLevel*> stages;
         ISoundEngine* soundEngine;
 };
+
+inline ISoundEngine* SceneMediator::getSoundEngine()
+{
+    return this->soundEngine;
+}
 
 #endif // !SCENE_MEDIATOR_H

@@ -10,7 +10,7 @@
 /// Input device class is defined about processes from Keyboard, Mouse, GamePad,
 /// multiple input devices.
 /// </summary>
-static class Input
+class Input
 {
 	public:
 		const static unsigned int KEY_COUNT;

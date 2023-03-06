@@ -9,7 +9,7 @@ class TitleScene :
     public AbstractScene
 {
     public:
-        TitleScene(unsigned int width, unsigned int height, SceneMediator* sceneMediator);
+        TitleScene(unsigned int width, unsigned int height, SceneMediator* sceneMediator, UIMediator* uiMediator);
 
         void Init() override;
         void Update(float dt) override;
@@ -20,5 +20,10 @@ class TitleScene :
     private:
         unsigned int level;
 };
+
+inline unsigned int TitleScene::GetLevel()
+{
+    return this->level;
+}
 
 #endif // !TITLE_SCENE_H

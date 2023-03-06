@@ -2,8 +2,9 @@
 #define POWER_UP_MANAGER_H
 
 #include<vector>
+#include<glm/glm.hpp>
 
-#include"powerUp.h"
+#include<powerUp.h>
 
 // forward reference
 class GameObjectMediator;
@@ -22,6 +23,7 @@ class PowerUpManager
 		void Update(float dt);
 		void Spawn(glm::vec2 spawnPos);
 		void Draw(SpriteRenderer& renderer);
+		void Init();
 
 	private:
 		void InActivatePowerUp(PowerUp& powerUp, BallObject& ball, Player& player, PostProcessor& effects);

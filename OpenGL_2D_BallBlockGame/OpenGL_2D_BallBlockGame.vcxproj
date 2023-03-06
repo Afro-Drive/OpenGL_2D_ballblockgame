@@ -137,11 +137,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="Actor\ballCollider.h" />
     <ClInclude Include="Actor\ballObject.h" />
-    <ClInclude Include="Actor\boxCollider.h" />
     <ClInclude Include="Actor\brock.h" />
-    <ClInclude Include="Actor\collider.h" />
     <ClInclude Include="Actor\gameObjectMediator.h" />
     <ClInclude Include="Actor\Level\gameLevel.h" />
     <ClInclude Include="Actor\player.h" />
@@ -168,17 +165,25 @@
     <ClInclude Include="MyInclude\gameObject.h" />
     <ClInclude Include="MyInclude\gameObjectMediator.h" />
     <ClInclude Include="MyInclude\input.h" />
+    <ClInclude Include="MyInclude\livesUI.h" />
     <ClInclude Include="MyInclude\particleGenerator.h" />
     <ClInclude Include="MyInclude\player.h" />
     <ClInclude Include="MyInclude\postProcessor.h" />
     <ClInclude Include="MyInclude\powerUp.h" />
     <ClInclude Include="MyInclude\powerUpManager.h" />
     <ClInclude Include="MyInclude\resourceManager.h" />
+    <ClInclude Include="MyInclude\scoreUI.h" />
     <ClInclude Include="MyInclude\screenDesc.h" />
     <ClInclude Include="MyInclude\shader.h" />
     <ClInclude Include="MyInclude\spriteRenderer.h" />
     <ClInclude Include="MyInclude\textRenderer.h" />
     <ClInclude Include="MyInclude\texture.h" />
+    <ClInclude Include="MyInclude\transform.h" />
+    <ClInclude Include="MyInclude\uIMediator.h" />
+    <ClInclude Include="Physics\ballCollider.h" />
+    <ClInclude Include="Physics\boxCollider.h" />
+    <ClInclude Include="Physics\collider.h" />
+    <ClInclude Include="Physics\transform.h" />
     <ClInclude Include="Scene\abstractScene.h" />
     <ClInclude Include="Scene\endScene.h" />
     <ClInclude Include="Scene\gameMainScene.h" />
@@ -186,15 +191,16 @@
     <ClInclude Include="Scene\sceneManager.h" />
     <ClInclude Include="Scene\sceneMediator.h" />
     <ClInclude Include="Scene\titleScene.h" />
+    <ClInclude Include="UI\baseUI.h" />
+    <ClInclude Include="UI\livesUI.h" />
+    <ClInclude Include="UI\scoreUI.h" />
     <ClInclude Include="UI\textRenderer.h" />
+    <ClInclude Include="UI\uIMediator.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\opengl_glfw_tutorial\downloads\glad\src\gl.c" />
-    <ClCompile Include="Actor\ballCollider.cpp" />
     <ClCompile Include="Actor\ballObject.cpp" />
-    <ClCompile Include="Actor\boxCollider.cpp" />
     <ClCompile Include="Actor\brock.cpp" />
-    <ClCompile Include="Actor\collider.cpp" />
     <ClCompile Include="Actor\gameObjectMediator.cpp" />
     <ClCompile Include="Actor\Level\gameLevel.cpp" />
     <ClCompile Include="Actor\player.cpp" />
@@ -210,6 +216,10 @@
     <ClCompile Include="Effect\texture.cpp" />
     <ClCompile Include="game.cpp" />
     <ClCompile Include="gameObject.cpp" />
+    <ClCompile Include="Physics\ballCollider.cpp" />
+    <ClCompile Include="Physics\boxCollider.cpp" />
+    <ClCompile Include="Physics\collider.cpp" />
+    <ClCompile Include="Physics\transform.cpp" />
     <ClCompile Include="program.cpp" />
     <ClCompile Include="Scene\abstractScene.cpp" />
     <ClCompile Include="Scene\endScene.cpp" />
@@ -218,7 +228,11 @@
     <ClCompile Include="Scene\sceneMediator.cpp" />
     <ClCompile Include="Scene\titleScene.cpp" />
     <ClCompile Include="stb.cpp" />
+    <ClCompile Include="UI\baseUI.cpp" />
+    <ClCompile Include="UI\livesUI.cpp" />
+    <ClCompile Include="UI\scoreUI.cpp" />
     <ClCompile Include="UI\textRenderer.cpp" />
+    <ClCompile Include="UI\uIMediator.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Levels\four.lvl" />

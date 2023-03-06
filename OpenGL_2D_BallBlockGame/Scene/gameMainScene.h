@@ -20,7 +20,7 @@ class GameMainScene :
     public AbstractScene
 {
     public:
-        GameMainScene(unsigned int width, unsigned int height, SceneMediator* sceneMediator);
+        GameMainScene(unsigned int width, unsigned int height, SceneMediator* sceneMediator, UIMediator* uiMediator);
         ~GameMainScene();
 
         void Init() override;
@@ -30,17 +30,18 @@ class GameMainScene :
 
         void ResetPlayer();
         void ResetLevel();
-        bool isLoadedStage();
+        bool IsLoadedStage();
         bool LoadStageData();
         std::vector<GameLevel*> GetStageVector();
         std::vector<Brock*> GetBricks();
         BallObject* GetBallObject();
         Player* GetPlayerObject();
+        unsigned int GetLives();
 
     private:
         unsigned int level;
         std::vector<GameLevel*> stageVector;
-        bool loadedStage;
+        bool isLoadedStage;
         unsigned int lives;
         GameObjectMediator* gameObjectMediator;
         BallObject* Ball;
@@ -52,9 +53,9 @@ inline std::vector<GameLevel*> GameMainScene::GetStageVector()
     return stageVector;
 }
 
-inline bool GameMainScene::isLoadedStage()
+inline bool GameMainScene::IsLoadedStage()
 {
-    return loadedStage;
+    return isLoadedStage;
 }
 
 inline std::vector<Brock*> GameMainScene::GetBricks()
@@ -70,6 +71,11 @@ inline BallObject* GameMainScene::GetBallObject()
 inline Player* GameMainScene::GetPlayerObject()
 {
     return this->player;
+}
+
+inline unsigned int GameMainScene::GetLives()
+{
+    return this->lives;
 }
 
 #endif // !GAME_MAIN_SCENE_H
