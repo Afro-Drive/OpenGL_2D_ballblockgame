@@ -2,8 +2,9 @@
 #define POWER_UP_MANAGER_H
 
 #include<vector>
+#include<glm/glm.hpp>
 
-#include"powerUp.h"
+#include<powerUp.h>
 
 // forward reference
 class GameObjectMediator;

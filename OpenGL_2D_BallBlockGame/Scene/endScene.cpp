@@ -24,6 +24,8 @@ void EndScene::Init()
 	nextScene = SceneName::TITLE;
 	isEnd = false;
 	isComplete = (this->sceneMediator->ShareLives() > 0);
+	if (isComplete)
+		effects->Chaos = true;
 	score = this->sceneMediator->ShareScore();
 }
 
@@ -52,7 +54,7 @@ void EndScene::ProcessInput(float dt)
 {
 	if (Input::Keys[GLFW_KEY_ENTER])
 	{
-		effects->Chaos = false;
+		this->effects->Chaos = false;
 		this->isEnd = true;
 	}
 }

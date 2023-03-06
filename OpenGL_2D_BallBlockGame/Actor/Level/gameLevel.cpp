@@ -100,7 +100,7 @@ void GameLevel::JudgeCollision()
 				bonusScore == 0 ?
 					this->bonusScore += 100
 					:
-					this->bonusScore *= 1.5;;
+					this->bonusScore *= 2;
 				this->score += bonusScore;
 				this->uiMediator->UpdateScore(this->score);
 			}

@@ -129,7 +129,6 @@ void GameMainScene::Update(float dt)
 	if (this->stageVector[this->level]->IsCompleted())
 	{
 		this->ResetPlayer();
-		effects->Chaos = true;
 		this->isEnd = true;
 	}
 
