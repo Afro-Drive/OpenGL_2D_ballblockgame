@@ -121,7 +121,6 @@ void GameMainScene::Update(float dt)
 		if (this->lives == 0)
 		{
 			// Game over
-			//this->ResetLevel();
 			this->ResetPlayer();
 			this->isEnd = true;
 		}
@@ -129,7 +128,6 @@ void GameMainScene::Update(float dt)
 	}
 	if (this->stageVector[this->level]->IsCompleted())
 	{
-		//this->ResetLevel();
 		this->ResetPlayer();
 		effects->Chaos = true;
 		this->isEnd = true;

@@ -17,7 +17,7 @@
 
 
 GameLevel::GameLevel(GameObjectMediator& gameObjectMediator, UIMediator& uiMediator)
-	:gameObjectMediator(&gameObjectMediator), uiMediator(&uiMediator), shakeTime(0.0f), score(0)
+	:gameObjectMediator(&gameObjectMediator), uiMediator(&uiMediator), shakeTime(0.0f), score(0), bonusScore(0)
 {
 	this->powerUpManager = new PowerUpManager(*(this->gameObjectMediator));
 	this->Bricks.clear();
@@ -96,7 +96,12 @@ void GameLevel::JudgeCollision()
 				box->SetDestroyed(true);
 				box->DoSpecialOnCollision();
 				this->powerUpManager->Spawn(box->transform->Position);
-				this->score += 100;
+				// if break brocks withou colliding player, bonus score increase by 1.5 times
+				bonusScore == 0 ?
+					this->bonusScore += 100
+					:
+					this->bonusScore *= 1.5;;
+				this->score += bonusScore;
 				this->uiMediator->UpdateScore(this->score);
 			}
 			else
@@ -112,7 +117,9 @@ void GameLevel::JudgeCollision()
 	if (!static_cast<BallObject*>(ballObj)->Stuck)
 	{
 		GameObject* player = static_cast<Player*>(this->gameObjectMediator->SurveyActiveGameObject(GameTag::PLAYER));
-		player->transform->GetCollider()->DoCollision(*(ballObj->transform->GetCollider()));
+		Collision result = player->transform->GetCollider()->DoCollision(*(ballObj->transform->GetCollider()));
+		if (std::get<0>(result))
+			bonusScore = 0; // reset bonus score
 	}
 }
 

@@ -43,6 +43,7 @@ class GameLevel
 		PowerUpManager* powerUpManager;
 		float shakeTime;
 		unsigned int score;
+		unsigned int bonusScore;
 		std::vector<std::vector<unsigned int>> tileData;
 
 		// initialize level from tile data
