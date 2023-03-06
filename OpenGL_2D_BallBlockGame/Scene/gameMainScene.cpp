@@ -12,12 +12,13 @@
 #include<particleGenerator.h>
 #include<postProcessor.h>
 #include<textRenderer.h>
-#include<powerUp.h>
 #include<ballObject.h>
 #include<player.h>
 #include<ballCollider.h>
 #include<boxCollider.h>
 #include<transform.h>
+#include<uIMediator.h>
+#include<scoreUI.h>
 
 
 // Initial size of the player paddle
@@ -31,10 +32,12 @@ const float BALL_RADIUS = 12.5f;
 
 // Game-related State data
 ParticleGenerator* Particles;
+ScoreUI* scoreUI;
 
 
-GameMainScene::GameMainScene(unsigned int width, unsigned int height, SceneMediator* sceneMediator)
-	:AbstractScene(width, height, sceneMediator), Ball(nullptr), isLoadedStage(false), level(0), lives(0), player(nullptr)
+GameMainScene::GameMainScene(unsigned int width, unsigned int height, SceneMediator* sceneMediator, UIMediator* uiMediator)
+	:AbstractScene(width, height, sceneMediator, uiMediator),
+	 Ball(nullptr), isLoadedStage(false), level(0), lives(0), player(nullptr)
 {
 	gameObjectMediator = new GameObjectMediator(
 		*(this->sceneMediator->getSoundEngine()),
@@ -52,6 +55,7 @@ GameMainScene::~GameMainScene()
 		delete gl;
 	}
 	stageVector.clear();
+	delete scoreUI;
 }
 
 void GameMainScene::Init()
@@ -87,6 +91,10 @@ void GameMainScene::Init()
 	Ball->transform->SetCollider(*ballCollider);
 
 	player->SetTargetBall(Ball);
+
+	// UI
+	this->uiMediator->SetFocusLevel(*(this->stageVector[level]));
+	scoreUI = new ScoreUI(*(this->uiMediator), *(this->gameObjectMediator));
 }
 
 void GameMainScene::Update(float dt)
@@ -148,33 +156,11 @@ void GameMainScene::Render(SpriteRenderer* renderer)
 	std::stringstream ss;
 	ss << this->lives;
 	text->RenderText("Lives: " + ss.str(), 5.0f, 5.0f, 1.0f);
-
+	scoreUI->Draw(*text);
 }
 
 void GameMainScene::ProcessInput(float dt)
 {
-	//float velocity = PLAYER_VELOCITY * dt;
-	//// move playerboard
-	//if (Input::Keys[GLFW_KEY_A])
-	//{
-	//	if (player->Position.x >= 0.0f)
-	//	{
-	//		player->Position.x -= velocity;
-	//		if (Ball->Stuck)
-	//			Ball->Position.x -= velocity;
-	//	}
-	//}
-	//if (Input::Keys[GLFW_KEY_D])
-	//{
-	//	if (player->Position.x <= this->width - player->Size.x)
-	//	{
-	//		player->Position.x += velocity;
-	//		if (Ball->Stuck)
-	//			Ball->Position.x += velocity;
-	//	}
-	//}
-	//if (Input::Keys[GLFW_KEY_SPACE])
-	//	Ball->Stuck = false;
 }
 
 //void GameMainScene::DoCollisions()

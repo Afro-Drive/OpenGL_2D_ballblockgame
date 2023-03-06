@@ -16,7 +16,7 @@
 
 
 GameLevel::GameLevel(GameObjectMediator& mediator)
-	:mediator(&mediator), shakeTime(0.0f)
+	:mediator(&mediator), shakeTime(0.0f), score(0)
 {
 	this->powerUpManager = new PowerUpManager(*(this->mediator));
 	this->Bricks.clear();
@@ -55,6 +55,7 @@ void GameLevel::Load(const char* file, unsigned int levelWidth, unsigned int lev
 	if (tileData.size() > 0)
 		this->DesignData(levelWidth, levelHeihgt);
 
+	this->score = 0;
 	this->powerUpManager->Init();
 }
 
@@ -93,6 +94,7 @@ void GameLevel::JudgeCollision()
 				box->SetDestroyed(true);
 				box->DoSpecialOnCollision();
 				this->powerUpManager->Spawn(box->transform->Position);
+				this->score += 100;
 			}
 			else
 			{

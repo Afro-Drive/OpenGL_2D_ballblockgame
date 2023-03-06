@@ -1,12 +1,12 @@
 #include "titleScene.h"
 
 #include"sceneMediator.h"
-
+#include<UIMediator.h>
 #include<textRenderer.h>
 #include<input.h>
 
-TitleScene::TitleScene(unsigned int width, unsigned int height, SceneMediator* sceneMediator)
-	:AbstractScene(width, height, sceneMediator),
+TitleScene::TitleScene(unsigned int width, unsigned int height, SceneMediator* sceneMediator, UIMediator* uiMediator)
+	:AbstractScene(width, height, sceneMediator, uiMediator),
      level(0)
 { }
 

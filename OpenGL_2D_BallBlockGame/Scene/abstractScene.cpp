@@ -8,8 +8,8 @@
 #include<postProcessor.h>
 
 
-AbstractScene::AbstractScene(unsigned width, unsigned int height, SceneMediator* sceneMediator)
-	:width(width), height(height), sceneMediator(sceneMediator)
+AbstractScene::AbstractScene(unsigned width, unsigned int height, SceneMediator* sceneMediator, UIMediator* uiMediator)
+	:width(width), height(height), isEnd(false), nextScene(), sceneMediator(sceneMediator), uiMediator(uiMediator)
 {
 	// text-UI
 	text = new TextRenderer(this->width, this->height);

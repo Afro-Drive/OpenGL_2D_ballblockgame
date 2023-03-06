@@ -13,6 +13,7 @@ class SceneMediator;
 class SpriteRenderer;
 class TextRenderer;
 class PostProcessor;
+class UIMediator;
 
 enum class SceneName
 {
@@ -25,7 +26,7 @@ class AbstractScene :
     public IScene
 {
     public:
-        AbstractScene(unsigned width, unsigned int height, SceneMediator* sceneMediator);
+        AbstractScene(unsigned width, unsigned int height, SceneMediator* sceneMediator, UIMediator* uiMediator);
         ~AbstractScene();
         // IScene implements(but not difined in this class)
         virtual void Init() override = 0;
@@ -44,6 +45,7 @@ class AbstractScene :
         TextRenderer* text;
         PostProcessor* effects;
         SceneMediator* sceneMediator;
+        UIMediator* uiMediator;
 };
 
 inline bool AbstractScene::GetIsEnd()

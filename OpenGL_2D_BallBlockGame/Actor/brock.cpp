@@ -7,7 +7,8 @@
 
 
 Brock::Brock(glm::vec2 pos, glm::vec2 size, Texture2D texture, GameObjectMediator& mediator, GameTag myTag, BoxCollider2D* collider, glm::vec3 color, glm::vec2 velocity)
-	:GameObject(pos, size, texture, collider, mediator, myTag, color, velocity)
+	:GameObject(pos, size, texture, collider, mediator, myTag, color, velocity),
+	 destroyed(false), isSolid(false)
 {
 }
 

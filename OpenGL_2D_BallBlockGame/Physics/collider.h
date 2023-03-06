@@ -49,7 +49,6 @@ class Collider2D :
         /// If this member collides other one, this class calculates about physics value.
         /// </summary>
         GameObject* target;
-        GameObjectMediator* mediator;
         
         virtual Collision CheckCollision(BoxCollider2D& other) = 0;
         virtual Collision CheckCollision(BallCollider2D& other) = 0;

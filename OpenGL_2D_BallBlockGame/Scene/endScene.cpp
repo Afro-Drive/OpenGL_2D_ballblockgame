@@ -6,8 +6,10 @@
 #include"sceneMediator.h"
 
 
-EndScene::EndScene(unsigned int width, unsigned int height, SceneMediator* sceneMediator)
-	:AbstractScene(width, height, sceneMediator) { }
+EndScene::EndScene(unsigned int width, unsigned int height, SceneMediator* sceneMediator, UIMediator* uIMediator)
+	:AbstractScene(width, height, sceneMediator, uIMediator),
+     isComplete(false)
+{ }
 
 EndScene::~EndScene()
 {

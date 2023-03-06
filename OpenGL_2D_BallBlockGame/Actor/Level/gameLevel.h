@@ -34,14 +34,21 @@ class GameLevel
 		// check if the level is completed (all non-solid tiles are destroyed)
 		bool IsCompleted();
 		void JudgeCollision();
+		unsigned int GetScore();
+
 	private:
 		GameObjectMediator* mediator;        
 		PowerUpManager* powerUpManager;
 		float shakeTime;
+		unsigned int score;
 		std::vector<std::vector<unsigned int>> tileData;
 
 		// initialize level from tile data
 		void DesignData(unsigned int levelWidth, unsigned int levelHeight);
 };
 
+inline unsigned int GameLevel::GetScore()
+{
+	return this->score;
+}
 #endif

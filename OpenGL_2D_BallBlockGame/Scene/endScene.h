@@ -8,7 +8,7 @@ class EndScene :
     public AbstractScene
 {
     public:
-        EndScene(unsigned int width, unsigned int height, SceneMediator* sceneMediator);
+        EndScene(unsigned int width, unsigned int height, SceneMediator* sceneMediator, UIMediator* uIMediator);
         ~EndScene();
 
         void Init() override;

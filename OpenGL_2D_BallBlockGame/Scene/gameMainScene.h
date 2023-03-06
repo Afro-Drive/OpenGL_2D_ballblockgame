@@ -20,7 +20,7 @@ class GameMainScene :
     public AbstractScene
 {
     public:
-        GameMainScene(unsigned int width, unsigned int height, SceneMediator* sceneMediator);
+        GameMainScene(unsigned int width, unsigned int height, SceneMediator* sceneMediator, UIMediator* uiMediator);
         ~GameMainScene();
 
         void Init() override;

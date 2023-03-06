@@ -171,12 +171,14 @@
     <ClInclude Include="MyInclude\powerUp.h" />
     <ClInclude Include="MyInclude\powerUpManager.h" />
     <ClInclude Include="MyInclude\resourceManager.h" />
+    <ClInclude Include="MyInclude\scoreUI.h" />
     <ClInclude Include="MyInclude\screenDesc.h" />
     <ClInclude Include="MyInclude\shader.h" />
     <ClInclude Include="MyInclude\spriteRenderer.h" />
     <ClInclude Include="MyInclude\textRenderer.h" />
     <ClInclude Include="MyInclude\texture.h" />
     <ClInclude Include="MyInclude\transform.h" />
+    <ClInclude Include="MyInclude\uIMediator.h" />
     <ClInclude Include="Physics\ballCollider.h" />
     <ClInclude Include="Physics\boxCollider.h" />
     <ClInclude Include="Physics\collider.h" />
@@ -189,7 +191,9 @@
     <ClInclude Include="Scene\sceneMediator.h" />
     <ClInclude Include="Scene\titleScene.h" />
     <ClInclude Include="UI\baseUI.h" />
+    <ClInclude Include="UI\scoreUI.h" />
     <ClInclude Include="UI\textRenderer.h" />
+    <ClInclude Include="UI\uIMediator.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\opengl_glfw_tutorial\downloads\glad\src\gl.c" />
@@ -223,7 +227,9 @@
     <ClCompile Include="Scene\titleScene.cpp" />
     <ClCompile Include="stb.cpp" />
     <ClCompile Include="UI\baseUI.cpp" />
+    <ClCompile Include="UI\scoreUI.cpp" />
     <ClCompile Include="UI\textRenderer.cpp" />
+    <ClCompile Include="UI\uIMediator.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Levels\four.lvl" />

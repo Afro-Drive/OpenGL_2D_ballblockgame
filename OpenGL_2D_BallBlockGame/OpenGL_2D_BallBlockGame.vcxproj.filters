@@ -186,6 +186,12 @@
     <ClCompile Include="Physics\transform.cpp">
       <Filter>ソース ファイル\Physics</Filter>
     </ClCompile>
+    <ClCompile Include="UI\scoreUI.cpp">
+      <Filter>ソース ファイル\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="UI\uIMediator.cpp">
+      <Filter>ソース ファイル\UI</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="gl.h">
@@ -345,6 +351,18 @@
       <Filter>ヘッダー ファイル\Physics</Filter>
     </ClInclude>
     <ClInclude Include="MyInclude\transform.h">
+      <Filter>ヘッダー ファイル\MyInclude</Filter>
+    </ClInclude>
+    <ClInclude Include="UI\scoreUI.h">
+      <Filter>ヘッダー ファイル\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="UI\uIMediator.h">
+      <Filter>ヘッダー ファイル\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="MyInclude\uIMediator.h">
+      <Filter>ヘッダー ファイル\MyInclude</Filter>
+    </ClInclude>
+    <ClInclude Include="MyInclude\scoreUI.h">
       <Filter>ヘッダー ファイル\MyInclude</Filter>
     </ClInclude>
   </ItemGroup>
