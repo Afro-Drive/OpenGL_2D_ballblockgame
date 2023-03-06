@@ -15,9 +15,15 @@ class ScoreUI :
         ScoreUI(UIMediator& uiMediator, GameObjectMediator& gameObjectMediator);
         ~ScoreUI();
         void Draw(TextRenderer& textRenderer) override;
+        void SetScore(unsigned int score);
         
     private:
         unsigned int score;
 };
+
+inline void ScoreUI::SetScore(unsigned int score)
+{
+    this->score = score;
+}
 
 #endif // !SCORE_UI_H

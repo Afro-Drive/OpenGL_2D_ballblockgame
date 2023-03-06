@@ -192,6 +192,9 @@
     <ClCompile Include="UI\uIMediator.cpp">
       <Filter>ソース ファイル\UI</Filter>
     </ClCompile>
+    <ClCompile Include="UI\livesUI.cpp">
+      <Filter>ソース ファイル\UI</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="gl.h">
@@ -364,6 +367,9 @@
     </ClInclude>
     <ClInclude Include="MyInclude\scoreUI.h">
       <Filter>ヘッダー ファイル\MyInclude</Filter>
+    </ClInclude>
+    <ClInclude Include="UI\livesUI.h">
+      <Filter>ヘッダー ファイル\UI</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

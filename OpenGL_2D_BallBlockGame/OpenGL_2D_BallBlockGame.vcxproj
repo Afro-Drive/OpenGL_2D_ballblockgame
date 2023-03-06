@@ -191,6 +191,7 @@
     <ClInclude Include="Scene\sceneMediator.h" />
     <ClInclude Include="Scene\titleScene.h" />
     <ClInclude Include="UI\baseUI.h" />
+    <ClInclude Include="UI\livesUI.h" />
     <ClInclude Include="UI\scoreUI.h" />
     <ClInclude Include="UI\textRenderer.h" />
     <ClInclude Include="UI\uIMediator.h" />
@@ -227,6 +228,7 @@
     <ClCompile Include="Scene\titleScene.cpp" />
     <ClCompile Include="stb.cpp" />
     <ClCompile Include="UI\baseUI.cpp" />
+    <ClCompile Include="UI\livesUI.cpp" />
     <ClCompile Include="UI\scoreUI.cpp" />
     <ClCompile Include="UI\textRenderer.cpp" />
     <ClCompile Include="UI\uIMediator.cpp" />

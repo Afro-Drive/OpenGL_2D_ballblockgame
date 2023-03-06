@@ -10,6 +10,7 @@
 class GameObjectMediator;
 class PowerUpManager;
 class SpriteRenderer;
+class UIMediator;
 
 
 enum class BrockColor
@@ -24,7 +25,7 @@ class GameLevel
 		// level state
 		std::vector<Brock*> Bricks;
 		// constructor
-		GameLevel(GameObjectMediator& mediator);
+		GameLevel(GameObjectMediator& gameObjectMediator, UIMediator& uiMediator);
 		~GameLevel();
 		// loads level from file
 		void Load(const char* file, unsigned int levelWidth, unsigned int levelHeihgt, bool firstLoad);
@@ -37,7 +38,8 @@ class GameLevel
 		unsigned int GetScore();
 
 	private:
-		GameObjectMediator* mediator;        
+		GameObjectMediator* gameObjectMediator;    
+		UIMediator* uiMediator;
 		PowerUpManager* powerUpManager;
 		float shakeTime;
 		unsigned int score;

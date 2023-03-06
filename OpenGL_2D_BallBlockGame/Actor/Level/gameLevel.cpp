@@ -13,12 +13,13 @@
 #include<boxCollider.h>
 #include<player.h>
 #include<transform.h>
+#include<uIMediator.h>
 
 
-GameLevel::GameLevel(GameObjectMediator& mediator)
-	:mediator(&mediator), shakeTime(0.0f), score(0)
+GameLevel::GameLevel(GameObjectMediator& gameObjectMediator, UIMediator& uiMediator)
+	:gameObjectMediator(&gameObjectMediator), uiMediator(&uiMediator), shakeTime(0.0f), score(0)
 {
-	this->powerUpManager = new PowerUpManager(*(this->mediator));
+	this->powerUpManager = new PowerUpManager(*(this->gameObjectMediator));
 	this->Bricks.clear();
 }
 
@@ -80,7 +81,7 @@ bool GameLevel::IsCompleted()
 void GameLevel::JudgeCollision()
 {
 	// for ball & brock
-	GameObject* ballObj = static_cast<BallObject*>(this->mediator->SurveyActiveGameObject(GameTag::BALL));
+	GameObject* ballObj = static_cast<BallObject*>(this->gameObjectMediator->SurveyActiveGameObject(GameTag::BALL));
 	for (Brock* box : this->Bricks)
 	{
 		if (box->Destroyed())
@@ -95,12 +96,13 @@ void GameLevel::JudgeCollision()
 				box->DoSpecialOnCollision();
 				this->powerUpManager->Spawn(box->transform->Position);
 				this->score += 100;
+				this->uiMediator->UpdateScore(this->score);
 			}
 			else
 			{
 				// if block is solid, enable shake effect
 				shakeTime = 0.05f;
-				this->mediator->GetEffects()->Shake = true;
+				this->gameObjectMediator->GetEffects()->Shake = true;
 			}
 		}
 	}
@@ -108,7 +110,7 @@ void GameLevel::JudgeCollision()
 	// for player & ball
 	if (!static_cast<BallObject*>(ballObj)->Stuck)
 	{
-		GameObject* player = static_cast<Player*>(this->mediator->SurveyActiveGameObject(GameTag::PLAYER));
+		GameObject* player = static_cast<Player*>(this->gameObjectMediator->SurveyActiveGameObject(GameTag::PLAYER));
 		player->transform->GetCollider()->DoCollision(*(ballObj->transform->GetCollider()));
 	}
 }
@@ -120,7 +122,7 @@ void GameLevel::Update(float dt)
 	{
 		shakeTime -= dt;
 		if (shakeTime <= 0.0f)
-			this->mediator->GetEffects()->Shake = false;
+			this->gameObjectMediator->GetEffects()->Shake = false;
 	}
 
 	JudgeCollision();
@@ -150,13 +152,13 @@ void GameLevel::DesignData(unsigned int levelWidth, unsigned int levelHeight)
 				BoxCollider2D* collider = nullptr;
 				Brock* brockObj = new Brock(pos, size,
 					ResourceManager::GetTexture("block_solid"),
-					*(this->mediator),
+					*(this->gameObjectMediator),
 					GameTag::BROCK,
 					collider,
 					glm::vec3(0.8f, 0.8f, 0.7f),
 					glm::vec2(0.0f, 0.0f)
 				);
-				collider = new BoxCollider2D(pos, size, *brockObj, *(this->mediator));
+				collider = new BoxCollider2D(pos, size, *brockObj, *(this->gameObjectMediator));
 				brockObj->transform->SetCollider(*collider);
 				brockObj->SetIsSolid(true);
 				this->Bricks.push_back(brockObj);
@@ -179,12 +181,12 @@ void GameLevel::DesignData(unsigned int levelWidth, unsigned int levelHeight)
 				BoxCollider2D* collider = nullptr;
 				Brock* brockObj = new Brock(pos, size,
 					ResourceManager::GetTexture("block"),
-					*(this->mediator),
+					*(this->gameObjectMediator),
 					GameTag::BROCK,
 					collider,
 					color,
 					glm::vec2(0.0f, 0.0f));
-				collider = new BoxCollider2D(pos, size, *brockObj, *(this->mediator));
+				collider = new BoxCollider2D(pos, size, *brockObj, *(this->gameObjectMediator));
 				brockObj->transform->SetCollider(*collider);
 				this->Bricks.push_back(brockObj);
 			}
