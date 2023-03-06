@@ -7,7 +7,7 @@
 #include<string>
 #include<gameObjectMediator.h>
 
-const glm::vec2 DRAW_POS = glm::vec2(5.0f, 25.0f);
+const glm::vec3 DRAW_POS = glm::vec3(5.0f, 25.0f, 1.0f);
 
 
 ScoreUI::ScoreUI(UIMediator& uiMediator, GameObjectMediator& gameObjectMediator)
@@ -23,5 +23,5 @@ ScoreUI::~ScoreUI()
 void ScoreUI::Draw(TextRenderer& textRenderer)
 {
 	std::string scoreStr = std::to_string(this->score);
-	textRenderer.RenderText("Score: " + scoreStr, DRAW_POS.x, DRAW_POS.y, 1.0f);
+	textRenderer.RenderText("Score: " + scoreStr, DRAW_POS.x, DRAW_POS.y, DRAW_POS.z);
 }

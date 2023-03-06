@@ -17,6 +17,11 @@ class EndScene :
         void ProcessInput(float dt) override;
     private:
         bool isComplete;
+        unsigned int score;
+
+        const glm::vec3 HEADER_POS;
+        const glm::vec3 SENTENSE_POS;
+        const glm::vec3 SCORE_POS;
 };
 
 #endif // !END_SCENE_H

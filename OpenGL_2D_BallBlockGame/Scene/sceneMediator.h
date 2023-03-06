@@ -22,6 +22,7 @@ class SceneMediator
         std::vector<GameLevel*> ShareStages();
         unsigned int ShareLevel();
         unsigned int ShareLives();
+        unsigned int ShareScore();
         ISoundEngine* getSoundEngine();
 
     private:

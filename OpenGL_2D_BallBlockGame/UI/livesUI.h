@@ -8,8 +8,6 @@
 class UIMediator;
 class GameObjectMediator;
 
-const glm::vec2 DRAW_POS = glm::vec2(5.0f, 5.0f);
-
 
 class LivesUI :
     public BaseUI
