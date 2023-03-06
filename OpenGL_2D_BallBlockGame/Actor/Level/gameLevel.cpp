@@ -57,6 +57,7 @@ void GameLevel::Load(const char* file, unsigned int levelWidth, unsigned int lev
 		this->DesignData(levelWidth, levelHeihgt);
 
 	this->score = 0;
+	this->uiMediator->UpdateScore(this->score);
 	this->powerUpManager->Init();
 }
 

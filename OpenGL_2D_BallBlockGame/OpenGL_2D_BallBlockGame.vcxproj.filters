@@ -371,6 +371,9 @@
     <ClInclude Include="UI\livesUI.h">
       <Filter>ヘッダー ファイル\UI</Filter>
     </ClInclude>
+    <ClInclude Include="MyInclude\livesUI.h">
+      <Filter>ヘッダー ファイル\MyInclude</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Levels\three.lvl">

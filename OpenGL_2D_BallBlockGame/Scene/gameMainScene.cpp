@@ -19,6 +19,7 @@
 #include<transform.h>
 #include<uIMediator.h>
 #include<scoreUI.h>
+#include<LivesUI.h>
 
 
 // Initial size of the player paddle
@@ -33,6 +34,7 @@ const float BALL_RADIUS = 12.5f;
 // Game-related State data
 ParticleGenerator* Particles;
 ScoreUI* scoreUI;
+LivesUI* livesUI;
 
 
 GameMainScene::GameMainScene(unsigned int width, unsigned int height, SceneMediator* sceneMediator, UIMediator* uiMediator)
@@ -95,7 +97,10 @@ void GameMainScene::Init()
 	// UI
 	this->uiMediator->SetFocusLevel(*(this->stageVector[level]));
 	scoreUI = new ScoreUI(*(this->uiMediator), *(this->gameObjectMediator));
+	livesUI = new LivesUI(*(this->uiMediator), *(this->gameObjectMediator));
 	this->uiMediator->SetFollowingScoreUI(*scoreUI);
+	this->uiMediator->SetFollowingLivesUI(*livesUI);
+	this->uiMediator->UpdateLives(this->lives);
 }
 
 void GameMainScene::Update(float dt)
@@ -111,6 +116,7 @@ void GameMainScene::Update(float dt)
 	if (Ball->transform->Position.y >= this->height) // if ball reach bottom edge?
 	{
 		--this->lives;
+		this->uiMediator->UpdateLives(this->lives);
 		// did the player lose all his lives?
 		if (this->lives == 0)
 		{

@@ -165,6 +165,7 @@
     <ClInclude Include="MyInclude\gameObject.h" />
     <ClInclude Include="MyInclude\gameObjectMediator.h" />
     <ClInclude Include="MyInclude\input.h" />
+    <ClInclude Include="MyInclude\livesUI.h" />
     <ClInclude Include="MyInclude\particleGenerator.h" />
     <ClInclude Include="MyInclude\player.h" />
     <ClInclude Include="MyInclude\postProcessor.h" />

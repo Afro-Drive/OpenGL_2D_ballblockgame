@@ -3,7 +3,6 @@
 
 #include "baseUI.h"
 
-class TextRenderer;
 class GameObjectMediator;
 class UIMediator;
 

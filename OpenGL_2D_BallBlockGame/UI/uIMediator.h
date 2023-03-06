@@ -3,7 +3,7 @@
 
 class GameLevel;
 class ScoreUI;
-class AbstractScene;
+class LivesUI;
 
 
 class UIMediator
@@ -14,11 +14,14 @@ class UIMediator
 		GameLevel* GetFocusLevel();
 		void SetFocusLevel(GameLevel& focusLevel);
 		void SetFollowingScoreUI(ScoreUI& scoreUI);
+		void SetFollowingLivesUI(LivesUI& livesUI);
 		void UpdateScore(unsigned int currentScore);
+		void UpdateLives(unsigned int currentLives);
 
 	private:
 		GameLevel* focusLevel;
 		ScoreUI* scoreUI;
+		LivesUI* livesUI;
 };
 
 inline GameLevel* UIMediator::GetFocusLevel()
@@ -34,6 +37,11 @@ inline void UIMediator::SetFocusLevel(GameLevel& focusLevel)
 inline void UIMediator::SetFollowingScoreUI(ScoreUI& scoreUI)
 {
 	this->scoreUI = &scoreUI;
+}
+
+inline void UIMediator::SetFollowingLivesUI(LivesUI& livesUI)
+{
+	this->livesUI = &livesUI;
 }
 
 #endif // !UI_MEDIATOR_H
